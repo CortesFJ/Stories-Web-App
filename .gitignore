@@ -7,7 +7,7 @@ __pycache__/
 
 /venv/
 
-**manage.py
+# **manage.py
 
 .ipynb_checkpoints
 
