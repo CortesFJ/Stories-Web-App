@@ -28,7 +28,7 @@ DEBUG = 0
 # ALLOWED_HOSTS = []
 # ALLOWED_HOSTS = ['*']
 ALLOWED_HOSTS = [
-    'https://stories-web-app-production.up.railway.app'
+    'https://stories-web-app-production'
     ]
 
 CSRF_TRUSTED_ORIGINS = [
