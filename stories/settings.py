@@ -27,8 +27,13 @@ DEBUG = 0
 
 # ALLOWED_HOSTS = []
 # ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['https://stories-web-app-production.up.railway.app/']
+ALLOWED_HOSTS = [
+    'https://stories-web-app-production.up.railway.app'
+    ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://stories-web-app-production.up.railway.app'
+]
 
 # Application definition
 
