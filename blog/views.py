@@ -5,4 +5,4 @@ def sendArticles(request):
     return render(request, "blog/home.html", context=context)
 
 # def hv(request):
-    # return render(request, "blog/hv.html")
+#     return render(request, "blog/hv.html")

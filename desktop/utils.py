@@ -72,6 +72,7 @@ def map_words(wordsMap, nestedWords):
 
     lexicon = pd.read_pickle('desktop/static/lexicon.pkl')
 
+
     txtLexicon = {}
     homonyms = []
     unknownWords = []
@@ -85,7 +86,6 @@ def map_words(wordsMap, nestedWords):
                     continue
 
                 wordData = lexicon[lexicon['word'] == word.lower()]
-
                 if wordData.empty:
 
                     nestedText[pI][sI][wI] = [word, None]
