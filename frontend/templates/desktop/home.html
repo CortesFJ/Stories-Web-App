@@ -15,7 +15,7 @@
         class="relative shadow-md rounded-lg hover:opacity-60 ">
         <a href={% url 'stories' pk=book.id %}>
           <img
-            src="{%get_static_prefix%}images/{{book.title}}.jpg"
+            {% comment %} src="{%get_static_prefix%}images/{{book.title}}.jpg" {% endcomment %}
             alt="Image for book: {{book.title}}"
             class="h-full w-full object-cover rounded-lg" />
           <div class="absolute bottom-0 w-full h-full
