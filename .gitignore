@@ -8,7 +8,7 @@ __pycache__/
 /venv/
 
 # **manage.py
-.ipynbj
+.ipynb
 .ipynb_checkpoints
 
 hv.html
