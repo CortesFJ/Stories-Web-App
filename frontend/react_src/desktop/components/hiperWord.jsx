@@ -22,12 +22,12 @@ const HiperWord = ({ id = '', word = '', lemmaId = '', phAid = '', searchTerm = 
 			className={`inline-block mt-2 ${word == "n't" ? '' : 'ml-0.5'}`}>
 			<PhoneticAid aid={phAid} />
 			<button
-				className={` ${searchTerm.clickedEl === id
-						? ' text-teal-800 font-bold'
-						: searchTerm.wordId === lemmaId
-							? 'text-cyan-600'
-							: 'font-light'
-					}`}
+				className={searchTerm.clickedEl === id
+					? ' text-teal-800 font-bold'
+					: lemmaId && searchTerm.wordId === lemmaId
+						? 'text-cyan-600'
+						: 'font-light'
+				}
 				onClick={() => handle_click(id, lemmaId)}>
 				{word}
 			</button>

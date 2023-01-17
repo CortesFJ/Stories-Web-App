@@ -15,7 +15,7 @@
         class="relative shadow-md rounded-lg hover:opacity-60 ">
         <a href={% url 'stories' pk=book.id %}>
           <img
-            {% comment %} src="{%get_static_prefix%}images/{{book.title}}.jpg" {% endcomment %}
+            src="{%get_static_prefix%}images/{{book.title}}.jpg"
             alt="Image for book: {{book.title}}"
             class="h-full w-full object-cover rounded-lg" />
           <div class="absolute bottom-0 w-full h-full
@@ -37,7 +37,7 @@
             alt="Generic image for book"
             class=" h-full w-full object-cover rounded-lg" />
           <div class="absolute bottom-0 w-full h-full
-            bg-neutral-900 rounded-lg opacity-60">
+            bg-neutral-900 rounded-lg opacity-80">
           </div>
           <p class="absolute bottom-0 w-full h-full
           capitalize grid items-center text-center text-neutral-100 font-extrabold">
@@ -52,8 +52,15 @@
       hover:shadow-xl hover:border-neutral-400">
       <h3 x-text='"Title Notes for Level " + level' class="py-4"> Title</h3>
       <img
-        :src="{%get_static_prefix%}+'images/level'+ level +'.jpg'"
+        :src="{%get_static_prefix%}+'images/notesLevel'+ level +'.jpg'"
         alt="Level notes image">
+      <p class="pt-3">
+        The main principle that guides how this page works is that true learning comes when there is meaning and context
+        involved in the presentation of the words and grammar structures you want to learn
+      </p>
+      <a
+        class="hover:opacity-60 text-cyan-600"
+        href="">know more</a>
     </div>
   </div>
 
@@ -74,7 +81,6 @@
       <span class="text-teal-800 neucha-font mt-1">Level</span>
     </ol>
   </div>
-
 </div>
 
 

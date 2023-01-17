@@ -39,16 +39,19 @@ const MetadataUpdater = () => {
 	}
 
 
-	const give_answer = ({ homonym = {}, translation = [] }) => {
+	const give_answer = ({ homonym, translation }) => {
 		let answersDict = answers
-		if (Object.keys(homonym).length) {
+		if (homonym) {
 			let trackedWords = answersDict.trackedWords
 			trackedWords = { ...trackedWords, [homonym.loc]: homonym.lemmaId }
 			answersDict = { ...answersDict, trackedWords }
 		}
 		if (translation) {
 			let transs = answersDict.translations
-			transs[currWord.word] = translation
+
+			translation.length ? (transs[currWord.word] = translation)
+				: delete transs[currWord.word]
+
 			answersDict = { ...answersDict, translations: transs }
 		}
 		setAnswers(answersDict)
@@ -127,14 +130,14 @@ const MetadataUpdater = () => {
 					}
 				</div>
 				<button
-					className='rounded border shadow-md hover:text-teal-800 hover:border-neutral-400 py-2 px-8 m-4'
+					className=' rounded border shadow-md hover:text-teal-800 hover:border-neutral-400 py-2 px-8 m-4'
 					onClick={() =>
 						fetchApi({
 							data: answers,
 							method: 'PUT',
 						}).then(r => window.location.href = '/textUpdated/')
 					}>
-					Enviar y Terminar
+					Enviar y Terminasr
 				</button>
 			</div>
 		</div >

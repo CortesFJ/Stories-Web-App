@@ -23,7 +23,7 @@ const TextBook = ({ text, setText, lexicon }) => {
 
 	return (
 		<div className='col-span-3 border border-neutral-500 rounded-lg shadow-xl'>
-			<div className='h-16 pt-3 bg-neutral-100 border-b rounded-t-lg border-neutral-400 shadow-inner'>
+			<div className='h-16 overflow-hidden pt-3 bg-neutral-100 border-b rounded-t-lg border-neutral-400 shadow-inner'>
 				<div className='px-4 text-red-900 opacity-80'>
 					{words
 						.filter(w => w.trim() && !lexicon.includes(w))

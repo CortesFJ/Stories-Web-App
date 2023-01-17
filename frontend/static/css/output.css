@@ -998,8 +998,8 @@ h4 {
   gap: 1.75rem;
 }
 
-.text-clip {
-  text-overflow: clip;
+.overflow-hidden {
+  overflow: hidden;
 }
 
 .whitespace-pre {
@@ -1129,6 +1129,11 @@ h4 {
 .bg-neutral-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(229 229 229 / var(--tw-bg-opacity));
+}
+
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
 .bg-slate-200 {
@@ -1377,6 +1382,10 @@ h4 {
   padding-bottom: 1.5rem;
 }
 
+.pr-4 {
+  padding-right: 1rem;
+}
+
 .pt-5 {
   padding-top: 1.25rem;
 }
@@ -1407,10 +1416,6 @@ h4 {
 
 .pt-1 {
   padding-top: 0.25rem;
-}
-
-.pr-4 {
-  padding-right: 1rem;
 }
 
 .pl-3 {
@@ -1577,16 +1582,6 @@ h4 {
 .text-teal-600 {
   --tw-text-opacity: 1;
   color: rgb(13 148 136 / var(--tw-text-opacity));
-}
-
-.text-cyan-900 {
-  --tw-text-opacity: 1;
-  color: rgb(22 78 99 / var(--tw-text-opacity));
-}
-
-.text-cyan-700 {
-  --tw-text-opacity: 1;
-  color: rgb(14 116 144 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -1900,6 +1895,11 @@ body {
   color: rgb(96 165 250 / var(--tw-text-opacity));
 }
 
+.hover\:text-cyan-700:hover {
+  --tw-text-opacity: 1;
+  color: rgb(14 116 144 / var(--tw-text-opacity));
+}
+
 .hover\:text-neutral-400:hover {
   --tw-text-opacity: 1;
   color: rgb(163 163 163 / var(--tw-text-opacity));
@@ -1910,14 +1910,9 @@ body {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.hover\:text-cyan-900:hover {
+.hover\:text-cyan-600:hover {
   --tw-text-opacity: 1;
-  color: rgb(22 78 99 / var(--tw-text-opacity));
-}
-
-.hover\:text-cyan-700:hover {
-  --tw-text-opacity: 1;
-  color: rgb(14 116 144 / var(--tw-text-opacity));
+  color: rgb(8 145 178 / var(--tw-text-opacity));
 }
 
 .hover\:opacity-70:hover {
