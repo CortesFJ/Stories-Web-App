@@ -11,7 +11,6 @@ __pycache__/
 .ipynb
 .ipynb_checkpoints
 
-stories/settings.py
 hv.html
 develop.html
 # /frontend/
