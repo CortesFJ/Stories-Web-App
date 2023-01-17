@@ -64,7 +64,6 @@ const PhEditor = ( ) => {
             <DownloadButton file={aidsDict} file_name='ph_aids.json'>
                 Download
             </DownloadButton>
-            <p>{currWord[0]}</p>
         </div>
     )
 }
