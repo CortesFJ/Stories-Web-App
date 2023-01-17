@@ -5,5 +5,5 @@ from . import views
 
 urlpatterns = [
     path("", views.sendArticles, name='blog'),
-    # path("hv/", views.hv),
+    path("hv/", views.hv),
 ]

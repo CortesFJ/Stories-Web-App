@@ -38,8 +38,7 @@ const Editor = ({ word, aid, aidsDict, setAidsDict }) => {
                     phAid={cAid}
                 />
                 <input type="text"
-                    className='w-full mt-2 '
-                    // defaultValue={cAid.join('')}
+                    className='w-full mt-2 shadow-inner border rounded px-3 py-1 '
                     value={cAid.join('')}
                     onChange={(e) => getAid(e.target.value)} />
             </div>

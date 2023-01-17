@@ -8,9 +8,10 @@ __pycache__/
 /venv/
 
 # **manage.py
-.ipynbj
+.ipynb
 .ipynb_checkpoints
 
+settings.py
 hv.html
 develop.html
 # /frontend/
