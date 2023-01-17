@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-2bij%!@wjcdifjoxjnf=j%642x26h-%%@a26r2nzoc7hbjnk+=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 0
 
-ALLOWED_HOSTS = ['stories-web-app-production.up.railway.app']
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'stories-web-app-production.up.railway.app']
 
 CSRF_TRUSTED_ORIGINS = [
     'https://stories-web-app-production.up.railway.app'
@@ -153,22 +155,14 @@ LOGOUT_REDIRECT_URL = '/login'
 AUTH_USER_MODEL = 'accounts.User'
 
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
         },
-       'file': {
-           'level': 'DEBUG',
-           'class': 'logging.FileHandler',
-           'filename': 'log.django',
-       },
     },
-    'loggers': {
-        'django': {
-            'handlers': ['console','file'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
-        },
+    "loggers": {
+        "django": {"handlers": ["console"], "level": "INFO"},
     },
 }
