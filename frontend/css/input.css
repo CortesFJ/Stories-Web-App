@@ -81,7 +81,7 @@ body {
 }
 
 .neucha-font {
-  font-family: 'Nesucha', sans-serif;
+  @apply font-sans;
 }
 
 
