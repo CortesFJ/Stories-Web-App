@@ -30,6 +30,17 @@ body {
     @apply text-xl;
     @apply font-semibold;
   }
+
+  h5 {
+    @apply font-semibold;
+    @apply capitalize;
+    @apply opacity-70;
+  }
+  
+  a{
+    @apply font-semibold;
+    @apply hover:opacity-60;
+  }
 }
 
 .hypertext {
