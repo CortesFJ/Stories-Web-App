@@ -2,11 +2,18 @@
 {% load static %}
 
 {% block content %}
-<h1 class="pt-24 pb-12 pl-4 uppercase">Sobre Nosotros</h1>
-<br><br>
-<div class="text-lg font-bold">
+<div class="h-96 text-justify relative">
+    <h1 class="absolute top-14 left-16 uppercase">¿por qué historias?</h1>
+    <img
+        class="h-full w-full object-cover"
+        src="{%get_static_prefix%}images/rompecabezas.jpg">
+    <span class="absolute bottom-3 right-3">
+        imagen de
+        <a
+            href="https://www.freepik.es/foto-gratis/cerrar-sobre-fondo-rompecabezas_22895162.htm?query=rompecabezas#from_view=detail_alsolike#position=0&query=rompecabezas">Freepik</a>
+    </span>
     <div
-        class="w-fit max-w-xl pb-3 border-b">
+        class="absolute bottom-12 left-16 font-bold w-1/4 text-neutral-600">
         <p>
             «Aprender otro idioma no es solamente aprender palabras diferentes para las mismas
             cosas, sino aprender otra manera de pensar acerca de las cosas»
@@ -14,180 +21,168 @@
         <p class="text-right pr-10 text-neutral-500">Flora Lewis </p>
     </div>
 </div>
-<br>
-<article class="text-justify pl-24 py-12">
-    <div class="">
-        <h2 class="my-6">El desafío</h2>
-        <div class="grid grid-cols-5">
-            <section class="col-span-3">
-                <p>
-                    Aprender un nuevo idioma puede ser una tarea abrumadora, pero es una experiencia
-                    increíblemente gratificante. No hay un único método para lograr esta meta, pero
-                    elegir las estrategias y el material acertado es el primer paso para garantizar
-                    el éxito frente a los desafíos que conlleva la adquisición de una nueva lengua.
-                </p>
-                <br>
-                <p>
-                    Y es que no son pocas las dificultades a enfrentar, algunas de las más
-                    importantes
-                    son:
-                </p>
-                <br>
-                <ul class="list-disc list-inside">
-                    <li>
-                        Adquisición de vocabulario: aprender y recordar nuevas palabras y frases.
-                    </li>
-                    <li>
-                        Gramática: comprender y aplicar las reglas de la lengua.
-                    </li>
-                    <li>
-                        Pronunciación: hablar con claridad y precisión.
-                    </li>
-                    <li>
-                        Comprensión: entender el significado del lenguaje hablado y escrito en
-                        contextos
-                        reales.
-                    </li>
-                    <li>
-                        Comunicación: expresarse de manera efectiva.
-                    </li>
-                    <li>
-                        Comprensión cultural: comprensión y navegación por las normas y costumbres
-                        culturales.
-                    </li>
-                    <li>
-                        Mantener la motivación y la constancia en la práctica del idioma.
-                    </li>
-                    <li>
-                        Superar el miedo a cometer errores.
-                    </li>
-                    <li>
-                        Acceso a recursos y oportunidades para practicar el idioma.
-                    </li>
-                </ul>
-            </section>
-            <div class="grid justify-center items-center">
-                <img src="{%get_static_prefix%}images/blog/some_ilustration.html" alt="some image">
-            </div>
-        </div>
-    </div>
-    <div class="">
-        <h2 class="my-6">Stories</h2>
-        <div class="grid grid-cols-5">
-            <section class="col-span-3 ">
-                <p>
-                    SORIES es una plataforma diseñada para ayudar a enfrentarse a esos desafíos.
-                    Nuestra tarea es brindar herramientas, tanto para estudiantes autónomos, como
-                    para tutores. Nuestro objetivo es facilitar el aprendizaje enfocándose en el
-                    propósito fundamental del idioma, comunicar significados.
+<article class="grid text-justify gap-6 w-2/6 min-w-[20rem] mx-auto py-16 [&>section>h3]:my-4">
+    <section>
+        <h3>EL DESAFÍO</h3>
+        <p>
+            Aprender un nuevo idioma puede ser una tarea abrumadora, pero es una
+            experiencia
+            increíblemente gratificante. No hay un único método para lograr esta meta,
+            pero
+            elegir las estrategias y el material acertado es el primer paso para
+            garantizar
+            el éxito frente a los desafíos que conlleva la adquisición de una nueva
+            lengua.
+        </p>
+        <br>
+        <p>
+            Y es que no son pocas las dificultades a enfrentar, entre otras podemos
+            mencionar:
+        </p>
+        <ul class=" list-disc list-inside pt-2 [&>li]:pt-2">
+            <li>
+                <strong> Aprender y recordar </strong> nuevas palabras y frases.
+            </li>
+            <li>
+                Comprender y aplicar las <strong>reglas gramaticales</strong> de la
+                lengua.
+            </li>
+            <li>
+                Desarrollar un <strong>pronunciación</strong> correcta
+            </li>
+            <li>
+                <strong> comprensión </strong> del significado del lenguaje hablado y
+                escrito en contextos reales.
+            </li>
+            <li>
+                Comprensión y navegación por las <strong> normas y costumbres
+                    culturales.</strong>
+            </li>
+            <li>
+                Mantener la <strong> motivación y la constancia</strong> en la práctica
+                del
+                idioma.
+            </li>
+            <li>
+                Superar el <strong>miedo</strong> a cometer errores.
+            </li>
+        </ul>
+    </section>
+    <section class="">
+        <h3>STORIES</h3>
+        <p>
+            SORIES es una plataforma diseñada para ayudar a enfrentarse a esos desafíos.
+            Nuestra tarea es brindar herramientas, tanto para estudiantes autónomos,
+            como
+            para tutores. Nuestro objetivo es facilitar el aprendizaje enfocándose en el
+            propósito fundamental del idioma, comunicar significados.
 
-                </p>
-                <br>
+        </p>
+        <p>
+            Esta aplicación presenta una variedad de historias, organizadas en un orden
+            progresivo de dificultad, lo que permite a los usuarios mejorar gradualmente
+            su
+            comprensión y vocabulario. Ya sea un principiante o un estudiante
+            avanzado, nuestra aplicación ofrece una forma efectiva de aprender
+            inglés a través de la lectura de una amplia gama de textos, que van desde
+            microcuentos simples y hasta narraciones más largas y complejas. Cada
+            historia
+            se selecciona cuidadosamente para brindar una experiencia de lectura rica y
+            atractiva, al mismo tiempo que presenta nuevas palabras y frases en
+            contexto.
+        </p>
+        <p>
+            A medida que los usuarios avanzan a través de las historias, encontrarán
+            vocabulario y estructuras gramaticales cada vez más desafiantes, lo que los
+            ayudará a construir una base sólida para su viaje de aprendizaje. El uso de
+            textos de progresiva dificultad para el estudio conlleva una lista
+            importante
+            de beneficios.
+
+        </p>
+    <ul class="[&>li]:pb-4 [&>li>p]:pt-2">
+            <li>
+                <strong> Mantener la Motivación y la Constancia </strong>
                 <p>
-                    Esta aplicación presenta una variedad de historias, organizadas en un orden
-                    progresivo de dificultad, lo que permite a los usuarios mejorar gradualmente su
-                    comprensión y vocabulario. Ya sea un principiante o un estudiante
-                    avanzado, nuestra aplicación ofrece una forma efectiva de aprender
-                    inglés a través de la lectura de una amplia gama de textos, que van desde
-                    microcuentos simples y hasta narraciones más largas y complejas. Cada historia
-                    se selecciona cuidadosamente para brindar una experiencia de lectura rica y
-                    atractiva, al mismo tiempo que presenta nuevas palabras y frases en contexto.
+                    Las historias son más atractivas y entretenidas que ejercicios
+                    aislados,
+                    lo que hace que la práctica del idioma sea más agradable y
+                    motivadora.
                 </p>
-                <br>
+            </li>
+            <li>
+                <strong> Adquisición de Vocabulario </strong>
                 <p>
-                    A medida que los usuarios avanzan a través de las historias, encontrarán
-                    vocabulario y estructuras gramaticales cada vez más desafiantes, lo que los
-                    ayudará a construir una base sólida para su viaje de aprendizaje. Con relación
-                    a los desafíos que mencionamos iniciando este artículo esta estrategia de
-                    estudio trae variadas ventajas.
+                    Las historias brindan un contexto natural para
+                    introducir nuevas palabras y frases, haciéndolas más memorables y
+                    fáciles de
+                    entender.
                 </p>
-                <br>
-                <ul class="[&>li>h5]:inline [&>li>p]:pt-2 [&>li>p]:pb-3 [&>li>p]:w-4/5">
-                    <li>
-                        <h5> Mantener la motivación y la constancia </h5>
-                        <p>
-                            Las historias son más atractivas y entretenidas que ejercicios aislados,
-                            lo que hace que la práctica del idioma sea más agradable y motivadora.
-                        </p>
-                    </li>
-                    <li>
-                        <h5> Adquisición de vocabulario </h5>
-                        <p>
-                            Las historias brindan un contexto natural para
-                            introducir nuevas palabras y frases, haciéndolas más memorables y
-                            fáciles de
-                            entender.
-                        </p>
-                    </li>
-                    <li>
-                        <h5> Comprensión </h5>
-                        <p>
-                            Las historias brindan un contexto que facilita el seguimiento y la
-                            construcción del significado.
-                        </p>
-                    </li>
-                    <li>
-                        <h5> Gramática </h5>
-                        <p>
-                            Se captar las estructuras gramaticales utilizadas en el idioma de una
-                            manera más natural, en lugar de simplemente memorizar reglas.
-                        </p>
-                    </li>
-                    <li>
-                        <h5> Comunicación </h5>
-                        <p>
-                            Al leer y escuchar historias, se pueden captar la forma en que los
-                            hablantes nativos usan el idioma en situaciones de la vida
-                            real, lo que facilita aprender a comunicarse de manera efectiva.
-                            Además brinda un contexto que facilita la práctica cuando se organizan
-                            grupos de estudio.
-                        </p>
-                    </li>
-                    <li>
-                        <h5> Pronunciación </h5>
-                        <p>
-                            La aplicación contiene ayudas que facilitan la memorización de la
-                            pronunciación correcta para cada palabra. Por otro lado al escuchar las
-                            narraciones, los alumnos pueden familiarizarse con la pronunciación
-                            correcta de oraciones completas.
-                        </p>
-                    </li>
-                    <li>
-                        <h5> Comprensión cultural </h5>
-                        <p>
-                            Las historias proporcionan información sobre la cultura y las
-                            costumbres vinculadas al idioma, lo que ayuda a los alumnos a manejar
-                            mejor estos aspectos en el uso de la lengua.
-                        </p>
-                    </li>
-                    <li>
-                        <h5>Recursos adecuados</h5>
-                        <p>
-                            Los cuentos organizados en niveles de dificultad permiten que el
-                            estudiante encuentre de manera rápida un material adecuado a su nivel, y
-                            facilita también que lleve un progreso adaptado a su propio ritmo.
-                        </p>
-                    </li>
-                </ul>
-            </section>
-            <div class="grid justify-center items-center">
-                <img src="{%get_static_prefix%}images/blog/some_ilustration.html" alt="some image">
-            </div>
-        </div>
-    </div>
-    <div class="">
-        <h2 class="my-6">¡A comensar!</h2>
-        <div class="grid grid-cols-5">
-            <section class="col-span-3 ">
-                Ahora que estas más familiarizado con la filosofia detras de nuestra propuesta
-                puedes dar un vistaso a este atriculo sobre el uso de <a href={%url 'tools-blog'%}>las herramientas</a>
-                en la página, o ir directamente a <a href={%url 'home' %}> las historias</a>
-            </section>
-            <div class="grid justify-center items-center">
-                <img src="{%get_static_prefix%}images/blog/some_ilustration.html" alt="some image">
-            </div>
-        </div>
-    </div>
+            </li>
+            <li>
+                <strong> Comprensión </strong>
+                <p>
+                    Las historias brindan un contexto que facilita el seguimiento y la
+                    construcción del significado.
+                </p>
+            </li>
+            <li>
+                <strong> Gramática </strong>
+                <p>
+                    Se captar las estructuras gramaticales utilizadas en el idioma de
+                    una
+                    manera más natural, en lugar de simplemente memorizar reglas.
+                </p>
+            </li>
+            <li>
+                <strong> Comunicación </strong>
+                <p>
+                    Al leer y escuchar historias, se pueden captar la forma en que los
+                    hablantes nativos usan el idioma en situaciones de la vida
+                    real, lo que facilita aprender a comunicarse de manera efectiva.
+                    Además brinda un contexto que facilita la práctica cuando se
+                    organizan
+                    grupos de estudio.
+                </p>
+            </li>
+            <li>
+                <strong> Pronunciación </strong>
+                <p>
+                    La aplicación contiene ayudas que facilitan la memorización de la
+                    pronunciación correcta para cada palabra.
+                    {% comment %} Por otro lado al escuchar las narraciones, los alumnos
+                    pueden familiarizarse con la pronunciación correcta de oraciones
+                    completas. {% endcomment %}
+                </p>
+            </li>
+            <li>
+                <strong> Comprensión Cultural </strong>
+                <p>
+                    Las historias proporcionan información sobre la cultura y las
+                    costumbres vinculadas al idioma, lo que ayuda a los alumnos a
+                    manejar
+                    mejor estos aspectos en el uso de la lengua.
+                </p>
+            </li>
+            <li>
+                <strong>Recursos Adecuados</strong>
+                <p>
+                    Los cuentos organizados en niveles de dificultad permiten que el
+                    estudiante encuentre de manera rápida un material adecuado a su
+                    nivel, y
+                    facilita también que lleve un progreso adaptado a su propio ritmo.
+                </p>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <h3>¡A COMENSAR!</h3>
+        <p>
+            Ahora que estas más familiarizado con la filosofia detras de nuestra propuesta
+            puedes dar un vistaso a este atriculo sobre el uso de <a
+                href={%url 'tools-blog'%}>las herramientas</a>
+            en la página, o ir directamente a <a href={%url 'home' %}> las historias</a>
+        </p>
+    </section>
 </article>
-</div>
 {% endblock %}

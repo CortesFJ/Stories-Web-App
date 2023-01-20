@@ -12,32 +12,36 @@ body {
 
 @layer base {
   h1 {
-    @apply text-4xl;
+    @apply text-6xl;
     @apply font-bold;
   }
 
   h2 {
-    @apply text-3xl;
+    @apply text-4xl;
     @apply font-semibold;
   }
 
   h3 {
-    @apply text-2xl;
+    @apply text-3xl;
     @apply font-semibold;
   }
 
   h4 {
-    @apply text-xl;
+    @apply text-2xl;
     @apply font-semibold;
   }
 
   h5 {
+    @apply text-xl;
     @apply font-semibold;
-    @apply capitalize;
-    @apply opacity-70;
+  }
+
+  strong {
+    @apply font-bold;
+    @apply opacity-90;
   }
   
-  a{
+  a {
     @apply font-semibold;
     @apply hover:opacity-60;
   }

@@ -52,7 +52,7 @@ const StoriesPage = () => {
 	}
 
 	return (
-		<div className='grid grid-cols-7 gap-7 px-12'>
+		<div className='grid grid-cols-7 gap-7 px-24'>
 			<div className='col-span-4'>
 				<header className='flex items-center h-16 justify-between border-b border-teal-800'>
 					<nav className=' bg-amber-100 flex items-center w-full justify-between pr-8'>

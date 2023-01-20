@@ -26,7 +26,7 @@
   {%endif%}">
   <div class=" {%if 'blog/' not in request.path %} h-[calc(100vh-2rem)] {%endif%} relative">
     {% include 'main/header.html' %}
-    <main class=" {%if request.path == '/' %} px-32 {%else%} px-12 {%endif%}">
+    <main class=" {%if request.path == '/' %} px-32 {%endif%}">
       {% block content %}{% endblock %}
     </main>
   </div>

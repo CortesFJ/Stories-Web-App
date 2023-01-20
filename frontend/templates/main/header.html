@@ -1,12 +1,13 @@
-<div x-data="{ visible: true, customPaddin: false }"
-  class="{%if 'blog/' in request.path %} sticky -top-24 z-50{%endif%} relative">
+<div x-data="{ visible:true, customPaddin: false }"
+  class="relative
+  {%if 'blog/' in request.path %} sticky -top-24 z-50 bg-neutral-800 text-neutral-200 {%endif%}">
   <div :class="customPaddin && 'h-16'"></div>
   <header
     x-show="visible"
     x-transition.duration.400ms
     class="flex  items-center justify-between pr-40 text-xl font-bold
     {%if request.path == '/' %} h-44 pl-32 pr-52  
-    {% elif 'blog/' in request.path %} h-28 bg-neutral-800 text-neutral-200 px-12 
+    {% elif 'blog/' in request.path %} h-28 px-12
     {%else%} h-32 pl-12 {%endif%} 
 ">
     <div class="text-teal-800">
@@ -145,8 +146,6 @@
 
   </header>
   {%if request.path != '/'%}
-
-  {%if request.path != '/blog/'%}
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
     stroke="currentColor"
     @click=" () => {
@@ -159,9 +158,8 @@
     }
     "
     :class="visible ? 'bottom-6' : 'bottom-2 rotate-180 opacity-40' "
-    class="absolute h-8 w-8 right-16 text-neutral-500 hover:text-neutral-800 transition duration-700">
+    class="absolute h-8 w-8 right-16 text-inherit hover:opacity-70 transition duration-700">
     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
   </svg>
-  {%endif%}
   {%endif%}
 </div>

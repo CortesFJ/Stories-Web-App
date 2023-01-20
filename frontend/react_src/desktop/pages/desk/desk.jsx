@@ -70,7 +70,7 @@ const Desk = () => {
 	}
 
 	return (
-		<div className='grid grid-cols-5 gap-6'>
+		<div className='grid grid-cols-5 gap-6 px-12'>
 			<TextBook
 				text={text}
 				setText={setText}
