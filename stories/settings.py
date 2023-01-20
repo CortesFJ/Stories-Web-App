@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-2bij%!@wjcdifjoxjnf=j%642x26h-%%@a26r2nzoc7hbjnk+=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 0
 
-ALLOWED_HOSTS = ['stories-web-app-production.up.railway.app']
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'stories-web-app-production.up.railway.app'
+]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://stories-web-app-production.up.railway.app'
@@ -140,7 +143,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 # Default primary key field type
