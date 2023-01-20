@@ -25,7 +25,7 @@ const HiperWord = ({ id = '', word = '', lemmaId = '', phAid = '', searchTerm = 
 				className={searchTerm.clickedEl === id
 					? ' text-teal-800 font-bold'
 					: lemmaId && searchTerm.wordId === lemmaId
-						? 'text-cyan-600'
+						? 'text-cyan-700'
 						: 'font-light'
 				}
 				onClick={() => handle_click(id, lemmaId)}>

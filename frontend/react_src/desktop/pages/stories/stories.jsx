@@ -11,7 +11,7 @@ const StoriesPage = () => {
 	const [book, setBook] = useState()
 	const [chapter, setChapter] = useState(0)
 	const [text, setText] = useState()
-	const [searchTerm, setSearchTerm] = useState({ lemma: 'stories', wordId: null, clickedEl: null })
+	const [searchTerm, setSearchTerm] = useState({ lemma: 'story', wordId: null, clickedEl: null })
 	const [searchMode, setSearchMode] = useState('notes')
 
 	useEffect(() => {

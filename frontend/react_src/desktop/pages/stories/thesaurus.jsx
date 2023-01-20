@@ -14,7 +14,7 @@ const Concordance = ({ wordId = '', chapters = [] }) => {
 				wordMap &&
 					acc.push(
 						<div key={i}>
-							<div className='pl-0 mb-3 text-right text-blue-400 uppercase'>{text.title}</div>
+							<h6 className='pl-0 mb-3 text-right text-cyan-700 uppercase'>{text.title}</h6>
 							{
 								wordMap.map((loc, i) => {
 									const [paragraph, sentence, word] = loc.split('_').map(i => parseInt(i))
@@ -22,9 +22,9 @@ const Concordance = ({ wordId = '', chapters = [] }) => {
 									return (
 										<div
 											key={i}
-											className='mb-2 hover:text-blue-400'>
+											className='mb-2'>
 											{snt.slice(0, word).map(e => get_word(e))}
-											<span className='text-blue-400'>{snt[word][0]}</span>
+											<span className='text-cyan-700'>{snt[word][0]}</span>
 											{snt.slice(word + 1, snt.length).map(e => get_word(e))}
 										</div>
 									)
@@ -40,40 +40,67 @@ const Concordance = ({ wordId = '', chapters = [] }) => {
 
 const DictResponse = ({ word = '' }) => {
 
-	const [data, setData] = useState([])
+	const [data, setData] = useState()
 
-	const fetch_dict = async entry => {
-		const response = await fetch(` https://api.dictionaryapi.dev/api/v2/entries/en/${entry}`)
-		const json = await response.json()
-		Array.isArray(json) && setData(json)
+	async function fetch_word(word) {
+		const apiKey = '18daa199-2a7d-4c78-8a0d-732dda4dd277'
+		const url = `https://www.dictionaryapi.com/api/v3/references/spanish/json/${word}?key=${apiKey}`
+
+		try {
+			const response = await fetch(url)
+			const data = await response.json()
+			return data
+		} catch (error) {
+			console.error(error)
+		}
 	}
 
 	useEffect(() => {
-		fetch_dict(word)
+		fetch_word(word)
+			.then(data => {
+				setData(data.reduce((acc, entry) => {
+					console.log({ word, entry });
+					entry.hwi.hw == word && acc.push(entry)
+					return acc
+				}, []))
+			})
 	}, [])
 
+	// data && console.log(data)
 	return (
-		<>
-			{data.map((meaning, i) => (
-				<div key={i}>
-					{meaning.meanings.map((m, i) => (
-						<div key={i}>
-							<div className='pl-0 mb-3 text-right text-blue-400 uppercase '>{m.partOfSpeech}</div>
-							<ul>
-								{m.definitions.map((d, i) => (
-									<li
-										className='p-2 '
-										key={i}>
-										{d.definition}
-									</li>
-								))}
-							</ul>
-						</div>
-					))}
-				</div>
+		<div>
+			{data?.map((meaning, i) => (
+				<ul
+					key={i}>
+					{meaning.shortdef.map((entry, i) => {
+						if (entry.includes(':')) {
+							const [en, es] = entry.split(':')
+							return (
+								<li
+									className='p-2'
+									key={i}>
+									<h6 className=' opacity-80 text-cyan-700 text-sm capitalize mt-4'>{meaning.fl}</h6>
+									<p>
+										<strong className='capitalize'>{en}: </strong>
+										<span>{es}</span>
+									</p>
+								</li>
+							)
+						}
+						return (
+							<li
+								className='p-2'
+								key={i}>
+								<h6 className=' opacity-80 text-cyan-700 text-sm capitalize mt-4'>{meaning.fl}</h6>
+								<p> {entry} </p>
+							</li>
+						)
+					})}
+				</ul>
 			))}
-		</>
+		</div>
 	)
+
 }
 
 const Thesaurus = ({ searchTerm = {}, chapters = [], mode = '', setMode = () => { }, translations = {} }) => {

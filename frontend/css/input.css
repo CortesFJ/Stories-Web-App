@@ -38,7 +38,7 @@ body {
 
   strong {
     @apply font-bold;
-    @apply opacity-90;
+    @apply opacity-80;
   }
   
   a {
