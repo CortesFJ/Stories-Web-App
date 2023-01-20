@@ -1,12 +1,12 @@
 <div x-data="{ visible: true, customPaddin: false }"
-  class="{%if 'blog/' in request.path %} sticky -top-24 z-50{%endif%} relative">
+  class="{%if request.path == '/blog/'%} sticky -top-24 {%endif%} relative">
   <div :class="customPaddin && 'h-16'"></div>
   <header
     x-show="visible"
     x-transition.duration.400ms
     class="flex  items-center justify-between pr-40 text-xl font-bold
     {%if request.path == '/' %} h-44 pl-32 pr-52  
-    {% elif 'blog/' in request.path %} h-28 bg-neutral-800 text-neutral-200 px-12 
+    {% elif request.path == '/blog/' %} h-28 bg-neutral-800 text-neutral-200 px-12 
     {%else%} h-32 pl-12 {%endif%} 
 ">
     <div class="text-teal-800">
@@ -18,7 +18,7 @@
       <p class='text-4xl'>
         Imagine
       </p>
-      {% elif 'blog/' in request.path  %}
+      {% elif request.path == '/blog/' %}
       <p class='text-4xl text-teal-600'>
         Learn
       </p>
@@ -43,12 +43,6 @@
         class="hover:text-neutral-400
         {% if request.path == '/' %} text-neutral-400 underline {% endif %} ">
         Home
-      </a>
-
-      <a href={% url 'about' %}
-        class="hover:text-neutral-400
-        {% if request.path == '/blog/about/' %} text-neutral-400 underline {% endif %} ">
-        About
       </a>
 
       <a href={% url 'blog' %}
@@ -94,8 +88,7 @@
           ">
           {% if user.is_authenticated %}
           <div class="capitalize rounded-t border-b flex items-center gap-6">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-              stroke-width="1.5"
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6 pb-1">
               <path stroke-linecap="round" stroke-linejoin="round"
                 d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -107,8 +100,7 @@
           <div>
             <a href={% url 'logout' %}
               class=" hover:opacity-60 pr-4 flex items-center gap-6">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                stroke-width="1.5"
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6 pb-1">
                 <path stroke-linecap="round" stroke-linejoin="round"
                   d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
@@ -119,8 +111,7 @@
           {% else %}
           <a href={% url 'login' %}
             class=" hover:opacity-60 pr-4 flex items-center gap-6 border-b">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-              stroke-width="1.5"
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6 pb-1">
               <path stroke-linecap="round" stroke-linejoin="round"
                 d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
@@ -129,8 +120,7 @@
           </a>
           <a href={% url 'logup' %}
             class=" hover:opacity-60 pr-4 flex items-center gap-6">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-              stroke-width="1.5"
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6 pb-1">
               <path stroke-linecap="round" stroke-linejoin="round"
                 d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
@@ -147,8 +137,7 @@
   {%if request.path != '/'%}
 
   {%if request.path != '/blog/'%}
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-    stroke="currentColor"
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
     @click=" () => {
       visible = !visible
       if (!customPaddin) {
