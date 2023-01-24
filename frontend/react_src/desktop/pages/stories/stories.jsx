@@ -10,18 +10,33 @@ import { LeftArrow, RightArrow } from '../../components/arrows'
 const StoriesPage = () => {
 	const [book, setBook] = useState()
 	const [chapter, setChapter] = useState(0)
+	const [dictData, setDictData] = useState({})
 	const [text, setText] = useState()
-	const [searchTerm, setSearchTerm] = useState({ lemma: 'story', wordId: null, clickedEl: null })
+	const [searchTerm, setSearchTerm] = useState()
 	const [searchMode, setSearchMode] = useState('notes')
 
 	useEffect(() => {
 		const cur_book = {
 			info: use_page_context('bookInfo'),
-			chapters: use_page_context('chapters')
+			chapters: use_page_context('chapters'),
 		}
 		setBook(cur_book)
 		setText(cur_book.chapters[0])
 	}, [])
+
+	useEffect(() => {
+		if (text) {
+			const words = Object.keys(text.wordsMap).map(k => book.info.lexicon[k].lemma)
+
+			const queryString = words.map(word => `words[]=${word}`).join('&')
+
+			fetch(`dictData/?${queryString}`)
+				.then(response =>
+					response.status == 200 ? response.json() : { message: 'hubó un problema para procesar la solicitud' }
+				)
+				.then(r => setDictData(r))
+		}
+	}, [text])
 
 	const handle_click = (clickedEl, wordId) => {
 		if (wordId === null) {
@@ -29,6 +44,9 @@ const StoriesPage = () => {
 			return
 		}
 
+		if (searchTerm?.wordId === wordId) {
+			return
+		}
 		const lemma = book.info.lexicon[wordId].lemma
 		setSearchTerm({ lemma, wordId, clickedEl })
 		setSearchMode('concordance')
@@ -52,12 +70,12 @@ const StoriesPage = () => {
 	}
 
 	return (
-		<div className='grid grid-cols-7 gap-7 px-24'>
-			<div className='col-span-4'>
-				<header className='flex items-center h-16 justify-between border-b border-teal-800'>
-					<nav className=' bg-amber-100 flex items-center w-full justify-between pr-8'>
+		<div className="grid grid-cols-7 gap-7 px-24">
+			<div className="col-span-4">
+				<header className="flex h-16 items-center justify-between border-b border-teal-800">
+					<nav className=" flex w-full items-center justify-between bg-amber-100 pr-8">
 						<select
-							className='uppercase text-2xl text-neutral-600 hover:text-neutral-700  font-bold bg-transparent translate-y-0.5'
+							className="translate-y-0.5 bg-transparent text-2xl font-bold  uppercase text-neutral-600 hover:text-neutral-700"
 							value={chapter}
 							onChange={e => change_chapter('_', e.target.value)}>
 							{book?.chapters.map((text, i) => (
@@ -68,13 +86,15 @@ const StoriesPage = () => {
 								</option>
 							))}
 						</select>
-						<span className='flex items-center gap-2'>
+						<span className="flex items-center gap-2">
 							<LeftArrow
 								onClick={() => change_chapter(-1)}
-								style='w-7 h-7 text-neutral-600 hover:text-neutral-800 active:text-green-900' />
+								style="w-7 h-7 text-neutral-600 hover:text-neutral-800 active:text-green-900"
+							/>
 							<RightArrow
 								onClick={() => change_chapter(1)}
-								style='w-7 h-7 text-neutral-600 hover:text-neutral-800 active:text-green-900' />
+								style="w-7 h-7 text-neutral-600 hover:text-neutral-800 active:text-green-900"
+							/>
 						</span>
 					</nav>
 				</header>
@@ -91,6 +111,7 @@ const StoriesPage = () => {
 				setMode={setSearchMode}
 				chapters={book?.chapters}
 				translations={book?.info.untrackedWords}
+				dictData={dictData}
 			/>
 		</div>
 	)

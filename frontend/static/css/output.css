@@ -1575,9 +1575,9 @@ a:hover {
   color: rgb(17 94 89 / var(--tw-text-opacity));
 }
 
-.text-cyan-600 {
+.text-cyan-700 {
   --tw-text-opacity: 1;
-  color: rgb(8 145 178 / var(--tw-text-opacity));
+  color: rgb(14 116 144 / var(--tw-text-opacity));
 }
 
 .text-neutral-600 {
@@ -1605,11 +1605,6 @@ a:hover {
   color: rgb(88 28 135 / var(--tw-text-opacity));
 }
 
-.text-blue-400 {
-  --tw-text-opacity: 1;
-  color: rgb(96 165 250 / var(--tw-text-opacity));
-}
-
 .text-neutral-500 {
   --tw-text-opacity: 1;
   color: rgb(115 115 115 / var(--tw-text-opacity));
@@ -1623,6 +1618,11 @@ a:hover {
 .text-neutral-100 {
   --tw-text-opacity: 1;
   color: rgb(245 245 245 / var(--tw-text-opacity));
+}
+
+.text-cyan-600 {
+  --tw-text-opacity: 1;
+  color: rgb(8 145 178 / var(--tw-text-opacity));
 }
 
 .text-stone-100 {
@@ -1642,11 +1642,6 @@ a:hover {
 
 .text-inherit {
   color: inherit;
-}
-
-.text-cyan-700 {
-  --tw-text-opacity: 1;
-  color: rgb(14 116 144 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -1951,6 +1946,11 @@ body {
   color: rgb(38 38 38 / var(--tw-text-opacity));
 }
 
+.hover\:text-black:hover {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
 .hover\:text-cyan-700:hover {
   --tw-text-opacity: 1;
   color: rgb(14 116 144 / var(--tw-text-opacity));
@@ -1999,6 +1999,11 @@ body {
   background-color: rgb(64 64 64 / var(--tw-bg-opacity));
 }
 
+.active\:bg-teal-900:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(19 78 74 / var(--tw-bg-opacity));
+}
+
 .active\:text-white:active {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -2022,6 +2027,11 @@ body {
 .active\:text-green-900:active {
   --tw-text-opacity: 1;
   color: rgb(20 83 45 / var(--tw-text-opacity));
+}
+
+.active\:text-neutral-100:active {
+  --tw-text-opacity: 1;
+  color: rgb(245 245 245 / var(--tw-text-opacity));
 }
 
 .peer:checked ~ .peer-checked\:mr-3 {

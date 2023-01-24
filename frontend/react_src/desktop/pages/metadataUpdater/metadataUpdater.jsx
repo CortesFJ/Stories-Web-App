@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 
 import use_page_context from '../../../hooks/use_page_context'
-import fetchApi from '../../../hooks/fetch_api'
+import fetch_api from '../../../hooks/fetch_api'
 
 import UnknownWordsForm from './unknownWordsForm'
 import HomonymsForm from './homonymsForm'
@@ -132,7 +132,7 @@ const MetadataUpdater = () => {
 				<button
 					className=' rounded border shadow-md hover:text-teal-800 hover:border-neutral-400 py-2 px-8 m-4'
 					onClick={() =>
-						fetchApi({
+						fetch_api({
 							data: answers,
 							method: 'PUT',
 						}).then(r => window.location.href = '/textUpdated/')

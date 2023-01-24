@@ -10,4 +10,5 @@ urlpatterns = [
     path("phEditor/", views.writePhonetics, name="phEditor"),
     path("textUpdated/", views.textUpdated),
     path("develop", views.develop, name="develop"),
+    path("stories/dictData/", views.DictData),
 ]

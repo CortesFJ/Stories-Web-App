@@ -27,7 +27,7 @@ DEBUG = 0
 
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = [
-    '127.0.0.1',
+    # '127.0.0.1',
     'stories-web-app-production.up.railway.app'
 ]
 

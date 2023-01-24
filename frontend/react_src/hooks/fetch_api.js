@@ -1,6 +1,6 @@
 /** @format */
 
-const fetchApi = ({ data = {}, dir = '', method = 'POST' }) =>
+const fetch_api = ({ data = {}, dir = '', method = 'POST' }) =>
 	fetch(dir, {
 		method: method,
 		headers: { 'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value },
@@ -13,4 +13,4 @@ const fetchApi = ({ data = {}, dir = '', method = 'POST' }) =>
 		)
 		.then(r => r)
 
-export default fetchApi
+export default fetch_api

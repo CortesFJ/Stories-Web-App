@@ -8,8 +8,8 @@ __pycache__/
 /venv/
 
 # **manage.py
-.ipynb
-.ipynb_checkpoints
+*.ipynb
+*.ipynb_checkpoints
 
 hv.html
 develop.html

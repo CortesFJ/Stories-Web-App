@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react'
 import TextBook from './TextBook'
 import LexiconHelp from './LexiconHelp'
 import use_page_context from '../../../hooks/use_page_context'
-import fetchApi from '../../../hooks/fetch_api'
+import fetch_api from '../../../hooks/fetch_api'
 
 const Desk = () => {
 	const existingTexts = use_page_context('texts')
@@ -33,7 +33,7 @@ const Desk = () => {
 			}
 		}
 
-		fetchApi({
+		fetch_api({
 			data: {
 				book,
 				text,
