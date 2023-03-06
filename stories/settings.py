@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+
+from numpy import ALLOW_THREADS
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,13 +25,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2bij%!@wjcdifjoxjnf=j%642x26h-%%@a26r2nzoc7hbjnk+='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 0
+DEBUG = True
 
-# ALLOWED_HOSTS = []
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8080',
+    'http://127.0.0.1:8000',
+    'http://127.0.0.1:5173',
+    'https://stories-web-app-production.up.railway.app',
+]
+
 ALLOWED_HOSTS = [
-    # '127.0.0.1',
+    'localhost',
+    '127.0.0.1',
     'stories-web-app-production.up.railway.app'
 ]
+
 
 CSRF_TRUSTED_ORIGINS = [
     'https://stories-web-app-production.up.railway.app'
@@ -45,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'corsheaders',
     'whitenoise.runserver_nostatic',
 
     'blog.apps.BlogConfig',
@@ -54,9 +65,12 @@ INSTALLED_APPS = [
 
     'rest_framework',
 
+
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
 
     "whitenoise.middleware.WhiteNoiseMiddleware",
@@ -74,7 +88,7 @@ ROOT_URLCONF = 'stories.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'frontend/templates', BASE_DIR / 'FrontEnd/dist'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -138,10 +152,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
+STATIC_URL = 'assets/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
+    BASE_DIR / 'FrontEnd/dist/assets'
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

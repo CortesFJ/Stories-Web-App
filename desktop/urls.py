@@ -1,8 +1,9 @@
 from django.urls import path
 
-from . import views
+from . import views, ApiViews
 
 urlpatterns = [
+    path("apiView", ApiViews.apiView),
     path("", views.Home, name="home"),
     path("stories/<str:pk>", views.BookView, name='stories'),
     path("desk/", views.Desk, name="desk"),

@@ -11,3 +11,6 @@ def About(request):
 
 def Tools(request):
     return render(request, 'blog/tools.html')
+
+def Hv(request):
+    return render(request, 'blog/hv.html')

@@ -1,0 +1,61 @@
+<!-- prettier-ignore-->
+{% load custom_template_tag %} 
+	{% if request.path == '/' %} 
+		{% set_var ' h-32 sm:h-44 pl-10 sm:pl-32 sm:pr-52 ' as headerStyle %}
+	{% elif 'blog/' in request.path %}
+		{% set_var 'h-28 px-12' as headerStyle %}
+		{% set_var 'sticky -top-24 z-50 bg-neutral-800 text-neutral-200' as blogStyle %}
+	{% else %} 
+		{% set_var 'h-32 p-12' as headerStyle %}
+	{% endif %}
+
+<div
+	x-data="Data()"
+	class=" {{blogStyle}} relative"
+>
+	<div :class="customPaddin && 'h-16'"></div>
+
+	<header
+		x-show="visible"
+		x-transition.duration.397ms
+		class=" {{headerStyle}} flex items-center justify-between font-bold sm:text-xl"
+	>
+		{% include './title.html' %} {% include './navbar.html' %}
+	</header>
+
+	{%if request.path != '/'%}
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		fill="none"
+		viewBox="0 0 24 24"
+		stroke-width="2"
+		stroke="currentColor"
+		@click=" () => {
+			visible = !visible
+			if (!customPaddin) {
+				setTimeout(() => { customPaddin = !customPaddin }, 400)
+			}
+			else {
+				customPaddin = !customPaddin
+			}}
+			"
+		class="absolute right-16 h-8 w-8 text-inherit transition duration-700 hover:opacity-70"
+		:class="visible ? 'bottom-6' : 'bottom-2 rotate-180 opacity-40'"
+	>
+		<path
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			d="M4.5 15.75l7.5-7.5 7.5 7.5"
+		/>
+	</svg>
+	{%endif%}
+</div>
+
+<script>
+	const Data = () => {
+		return {
+			visible: true,
+			customPaddin: false,
+		}
+	}
+</script>

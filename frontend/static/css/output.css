@@ -620,6 +620,10 @@ a:hover {
   top: 16rem;
 }
 
+.right-4 {
+  right: 1rem;
+}
+
 .-top-24 {
   top: -6rem;
 }
@@ -742,12 +746,12 @@ a:hover {
   margin-top: 1.5rem;
 }
 
-.-mb-4 {
-  margin-bottom: -1rem;
-}
-
 .ml-3 {
   margin-left: 0.75rem;
+}
+
+.-mb-4 {
+  margin-bottom: -1rem;
 }
 
 .block {
@@ -831,6 +835,14 @@ a:hover {
   height: calc(100vh - 9rem);
 }
 
+.h-\[calc\(100vh-2rem\)\] {
+  height: calc(100vh - 2rem);
+}
+
+.h-\[calc\(100vh-7rem\)\] {
+  height: calc(100vh - 7rem);
+}
+
 .h-44 {
   height: 11rem;
 }
@@ -847,8 +859,8 @@ a:hover {
   height: 2rem;
 }
 
-.h-\[calc\(100vh-2rem\)\] {
-  height: calc(100vh - 2rem);
+.h-36 {
+  height: 9rem;
 }
 
 .w-24 {
@@ -905,16 +917,16 @@ a:hover {
   width: 33.333333%;
 }
 
-.w-8 {
-  width: 2rem;
-}
-
 .w-3\/5 {
   width: 60%;
 }
 
 .w-screen {
   width: 100vw;
+}
+
+.w-8 {
+  width: 2rem;
 }
 
 .min-w-\[20rem\] {
@@ -1261,6 +1273,21 @@ a:hover {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
+.bg-green-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(187 247 208 / var(--tw-bg-opacity));
+}
+
+.bg-stone-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(120 113 108 / var(--tw-bg-opacity));
+}
+
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
@@ -1288,6 +1315,10 @@ a:hover {
 
 .p-10 {
   padding: 2.5rem;
+}
+
+.p-12 {
+  padding: 3rem;
 }
 
 .py-2 {
@@ -1445,6 +1476,18 @@ a:hover {
   padding-top: 1.5rem;
 }
 
+.pt-20 {
+  padding-top: 5rem;
+}
+
+.pl-3 {
+  padding-left: 0.75rem;
+}
+
+.pt-28 {
+  padding-top: 7rem;
+}
+
 .pr-40 {
   padding-right: 10rem;
 }
@@ -1457,24 +1500,16 @@ a:hover {
   padding-right: 13rem;
 }
 
-.pl-16 {
-  padding-left: 4rem;
-}
-
 .pt-1 {
   padding-top: 0.25rem;
 }
 
-.pt-20 {
-  padding-top: 5rem;
+.pl-16 {
+  padding-left: 4rem;
 }
 
-.pl-3 {
-  padding-left: 0.75rem;
-}
-
-.pt-28 {
-  padding-top: 7rem;
+.pl-10 {
+  padding-left: 2.5rem;
 }
 
 .text-left {
@@ -1635,13 +1670,13 @@ a:hover {
   color: rgb(229 229 229 / var(--tw-text-opacity));
 }
 
+.text-inherit {
+  color: inherit;
+}
+
 .text-teal-600 {
   --tw-text-opacity: 1;
   color: rgb(13 148 136 / var(--tw-text-opacity));
-}
-
-.text-inherit {
-  color: inherit;
 }
 
 .underline {
@@ -1961,14 +1996,14 @@ body {
   color: rgb(8 145 178 / var(--tw-text-opacity));
 }
 
-.hover\:text-neutral-400:hover {
-  --tw-text-opacity: 1;
-  color: rgb(163 163 163 / var(--tw-text-opacity));
-}
-
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.hover\:text-neutral-400:hover {
+  --tw-text-opacity: 1;
+  color: rgb(163 163 163 / var(--tw-text-opacity));
 }
 
 .hover\:opacity-70:hover {
@@ -2036,6 +2071,34 @@ body {
 
 .peer:checked ~ .peer-checked\:mr-3 {
   margin-right: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .sm\:h-8 {
+    height: 2rem;
+  }
+
+  .sm\:h-44 {
+    height: 11rem;
+  }
+
+  .sm\:pl-32 {
+    padding-left: 8rem;
+  }
+
+  .sm\:pr-52 {
+    padding-right: 13rem;
+  }
+
+  .sm\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  .sm\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
 }
 
 .\[\&\>section\>h3\]\:my-4>section>h3 {

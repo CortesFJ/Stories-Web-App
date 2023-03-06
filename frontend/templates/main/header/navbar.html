@@ -1,48 +1,28 @@
-<div x-data="{ visible:true, customPaddin: false }"
-  class="relative
-  {%if 'blog/' in request.path %} sticky -top-24 z-50 bg-neutral-800 text-neutral-200 {%endif%}">
-  <div :class="customPaddin && 'h-16'"></div>
-  <header
-    x-show="visible"
-    x-transition.duration.400ms
-    class="flex  items-center justify-between pr-40 text-xl font-bold
-    {%if request.path == '/' %} h-44 pl-32 pr-52  
-    {% elif 'blog/' in request.path %} h-28 px-12
-    {%else%} h-32 pl-12 {%endif%} 
-">
-    <div class="text-teal-800">
-      {% if 'stories' in request.path %}
-      <p class='text-4xl capitalize pl-12'>
-        {{bookInfo.title}}
-      </p>
-      {% elif request.path == '/desk/' %}
-      <p class='text-4xl'>
-        Imagine
-      </p>
-      {% elif 'blog/' in request.path  %}
-      <p class='text-4xl text-teal-600'>
-        Learn
-      </p>
-      {% elif 'metadataUpdater' in request.path %}
-      <p class='text-4xl pl-16'>
-        Teach
-      </p>
-      {% else%}
-      <div class="pit-20 text-5xl">
-        <p class="-mb-4 rubik-font font-light">
-          STORIES
-        </p>
-        <span class="pl-2 text-2xl text-neutral-500">
-          Imagine, Learn
-        </span>
-      </div>
-      {% endif %}
-    </div>
+<!-- prettier-ignore-->
+{% load custom_template_tag %} 
+
+	{% if 'stories' in request.path %}
+		{% set_var 'pl-12 capitalize' as titleStyle %}
+		{% set_var bookInfo.title as title %}
+	{% elif request.path == '/desk/' %}
+		{% comment %} {% set_var  as titleStyle %} {% endcomment %}
+		{% set_var 'Imagine' as title %}
+	{% elif 'blog/' in request.path %}
+		{% set_var 'text-teal-600' as titleStyle %}
+		{% set_var 'Learn' as title %}
+	{% elif 'metadataUpdater' in request.path %}
+		{% set_var 'pl-16' as titleStyle %}
+		{% set_var Teach as title %}
+	{% else %} 
+		{% set_var 'rubik-font -mb-4 ms:text-5xl font-light' as titleStyle %}
+		{% set_var 'STORIES' as title %}
+	{% endif %}
 
     <nav class="flex gap-6">
-      <a href={% url 'home' %}
+      <a href="{% url 'home' %}"
         class="hover:text-neutral-400
-        {% if request.path == '/' %} text-neutral-400 underline {% endif %} ">
+        {% if request.path == '/' %} text-neutral-400 underline {% endif %} "
+        >
         Home
       </a>
 
@@ -51,7 +31,6 @@
         {% if request.path == '/blog/about/' %} text-neutral-400 underline {% endif %} ">
         About
       </a>
-
       <a href={% url 'blog' %}
         class="hover:text-neutral-400
         {% if request.path == '/blog/' %} text-neutral-400 underline {% endif %} ">
@@ -68,7 +47,8 @@
 
       <div x-data="{open:false}" class="relative ml-3 pt-1">
         <div>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            stroke-width="1.5"
             stroke="currentColor"
             class="w-6 h-6 hover:opacity-60"
             x-show="!open"
@@ -76,7 +56,8 @@
             <path stroke-linecap="round" stroke-linejoin="round"
               d="M3 4.5h14.25M3 9h9.75M3 13.5h9.75m4.5-4.5v12m0 0l-3.75-3.75M17.25 21L21 17.25" />
           </svg>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            stroke-width="1.5"
             stroke="currentColor"
             class="w-6 h-6 hover:opacity-60"
             x-show="open"
@@ -143,23 +124,3 @@
         {% endif %}
       </div>
     </nav>
-
-  </header>
-  {%if request.path != '/'%}
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-    stroke="currentColor"
-    @click=" () => {
-      visible = !visible
-      if (!customPaddin) {
-        setTimeout(() => { customPaddin = !customPaddin }, 400)
-      } else {
-        customPaddin = !customPaddin
-      }
-    }
-    "
-    :class="visible ? 'bottom-6' : 'bottom-2 rotate-180 opacity-40' "
-    class="absolute h-8 w-8 right-16 text-inherit hover:opacity-70 transition duration-700">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-  </svg>
-  {%endif%}
-</div>

@@ -1,0 +1,28 @@
+<!-- prettier-ignore-->
+{% load custom_template_tag %} 
+
+	{% if 'stories' in request.path %}
+		{% set_var 'pl-12 capitalize' as titleStyle %}
+		{% set_var bookInfo.title as title %}
+	{% elif request.path == '/desk/' %}
+		{% comment %} {% set_var  as titleStyle %} {% endcomment %}
+		{% set_var 'Imagine' as title %}
+	{% elif 'blog/' in request.path %}
+		{% set_var 'text-teal-600' as titleStyle %}
+		{% set_var 'Learn' as title %}
+	{% elif 'metadataUpdater' in request.path %}
+		{% set_var 'pl-16' as titleStyle %}
+		{% set_var Teach as title %}
+	{% else %} 
+		{% set_var 'rubik-font -mb-4 ms:text-5xl font-light' as titleStyle %}
+		{% set_var 'STORIES' as title %}
+	{% endif %}
+
+<div class="text-teal-800">
+	<div class="text-4xl">
+		<p class="{{titleStyle}}">{{title}}</p>
+		{% if title == 'STORIES' %}
+		<span class="pl-2 text-lg text-neutral-500 sm:text-2xl">Imagine, Learn</span>
+		{% endif %}
+	</div>
+</div>
