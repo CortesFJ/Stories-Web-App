@@ -7,7 +7,6 @@ if (root_elm) {
 
   const componentName = root_elm.getAttribute('name')
 
-
   let Page;
   switch (true) {
     case /desk/.test(componentName):
@@ -21,6 +20,9 @@ if (root_elm) {
       break;
     case /stories/.test(componentName):
       Page = lazy(() => import("./desktop/pages/stories/stories"));
+      break;
+    case /analyze/.test(componentName):
+      Page = lazy(() => import("./desktop/pages/analyze/analyze"));
       break;
     default:
       console.error('not component name specified in template');

@@ -36,7 +36,7 @@ const TextBook = ({ text, setText, lexicon }) => {
 			</div>
 			<textarea
 				defaultValue={text}
-				className='hypertext w-full outline-none rounded-b-lg resize-none bg-neutral-300 '
+				className='hypertext textarea w-full outline-none rounded-b-lg resize-none bg-neutral-300 '
 				onInput={evt => {
 					const text = evt.target.value
 					const words = text.split(/\W/)

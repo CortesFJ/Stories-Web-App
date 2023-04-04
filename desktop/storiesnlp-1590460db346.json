@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "storiesnlp",
+  "private_key_id": "1590460db3466a88f7d00ee524bf87e508f7802a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC21BhyWClWE8nW\nXzIIN4oZw7qUCQyPPRHjmkhyx+2iG9XATHaI3agANBvCvbs2NRTyEp6ikMjYceWO\nodc3lAOW5GzTV/Df2ndkQvh0gEE+8A9k7qoQmK7A44KXnvt6hktfy3k9amOxIzO0\n8ymbSTPgc4cSd5w1VxJzfsseNQ5sIAZa1m2Jl4Aa4gA28xl6TlDyInbZgfj8x6EB\n9Ge7aHaWTpRkfhyuzrkAVSepkhKBKaKLIEzFHXQUe+4R0p0gqDoHEmWvZ/8PnwBy\ntNouin0upPADS/jVtUvdF8NU38q8fuEhgwMxPpOWNaam/S6uqvT0MvhJNG9FaNTQ\nK0XjOQlLAgMBAAECggEABMp0rt+14EDkfm7q1gxJMiOkNVIyDLmCSSnh0XWBD0kW\nG36QHJtdAPmx6zMi6hNkrnM5H57A+esCI5qvaRAX3VG0Xaq6781pviwtwTUbK0Bf\nJuXveZUxVHH3GhdbFPralB1g2pskbEqKhaiu48LR+S+4emNn/yh+SJ3Un2tZ1WYg\nvxoCyZ1DnnOE8prNbq/JIa4E7oHYxp6G0IS/wuQJ7dmrWxmthpf/LBZJyBWHmmRv\nW9jQEuWFKRuknOYzwv4FuGzoDyzVm0mpyk5iKfeUDgCEitin7bOtKTH9LrWIWme7\nxfGPYKt088uF1bRy2OA7fj5ep16JL7gVywNcQHRxAQKBgQDkNSucPqRoGnj/S7QA\npKhp6NeWCDqfAN6PFy5pf64RuE1LqnRLdgC4trGLHvhP4VviwTuGXQ6wQtfYLrzc\nDtXPK8aEqHM7vjE0jYKHAcvm2qYo0SswfDJy1oQ/eXjUdQWvefRlkIPAxbYvotWK\nv+juBUAINqwrOod4cS6h9SUXNQKBgQDNGCNhcrGEw7gAAYtqGm94Tvv6xrpXIcdE\nJXjVV8hiM1T65c9KBrCFPn1exYkceXASbgq/5AstwzXqeh5mp9EeXhW+oUH2lFIC\nKSVV57buiiu3MPSka6gvWvnrG2UdPrcUlas9GMEkBOYtsLvU1BAVeJvyZaJrQlfL\nNqp21usufwKBgQCodT9+FRfT6UbMXhvAJcxUchdCn0x2t3OS+S+/nQrn9b7JTkiO\ns8sQj3w8EF6IyPjFSJMiOmtvXchrwwSTBTh7t/rRTm/R+DHmc1eZRZA5F8p0cwOI\nxQWQlB4HpSm227OYt1Pb7XP0x34XaAJubAAMRD/iUEmDl68ND6+2ynnYyQKBgGfM\n7LM4SjIooGqYXYgQ4xPf3dY5WDwbI3ARCwvnBsr0sfDd+MC9i/+T9f3OOivIJnmd\naiFeeG3r29DVh6drDgKxmY3GrczvmmXvjy7gPIyUL7XiuB6zQgbdo5ljXxSjFiP7\n8BPXAIGLXTgIt7fqsE09oqfW2pIwnKCEBVhqQ9NfAoGBANEHIjGzZlaZOO3BW8Of\npbgGnUMNrRuMDBimYhXCncZvOaXBVxf+sVQlLW4Ov4N6KR9ySaLSvv2FvpuQurLv\nhdsHKTFw2kkjf0l8uuemcE9n4cPk7qa/4K/L2cebGpPfWaM5dNtyZjp0YSn59tN7\n6HyzHr4NRMb7Lw7rQtPIqyAR\n-----END PRIVATE KEY-----\n",
+  "client_email": "storiesapp@storiesnlp.iam.gserviceaccount.com",
+  "client_id": "107710799797533957162",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/storiesapp%40storiesnlp.iam.gserviceaccount.com"
+}

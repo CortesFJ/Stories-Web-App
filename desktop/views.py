@@ -1,9 +1,9 @@
 import json
-import os
+
+from google.cloud import language_v1
 
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-from django.conf import settings
 
 from .models import Text, Book
 from accounts.models import User
@@ -141,3 +141,35 @@ def DictData(request):
     #     'adjective': [['mundial, del mundo']], 'noun': [['mundo', 'mundo', 'society : mundo']]}, 'audio': 'world001'}, 'hear': {'translations': {'verb': [['oír', 'heed : oír, prestar atención a', 'learn : oír, enterarse de']]}, 'audio': 'hear0001'}, 'always': {'translations': {'adverb': [['invariably : siempre, invariablemente', 'forever : para siempre']]}, 'audio': 'always02'}, 'different': {'translations': {'adjective': [['distinto, diferente']]}, 'audio': ''}, 'home': {'translations': {'noun': [['hogar, casa', 'house, residence : casa, domicilio', 'seat : sede']]}, 'audio': ''}, 'far': {'translations': {'adverb': [['lejos', 'much : muy, mucho', 'lejos']], 'adjective': [['distant, remote : lejano, remoto', 'más lejano', 'la extrema izquierda/derecha (en la política)']]}, 'audio': 'far00001'}, 'long': {'translations': {'intransitive verb': [['añorar, desear, anhelar', 'anhelar, estar deseando']], 'adverb': [['mucho, mucho tiempo', 'todo el día', 'if : mientras, con tal (de) que']], 'adjective': [['largo', 'largo, prolongado', 'estar cargado de']], 'noun': [['dentro de poco', 'lo esencial, lo fundamental']]}, 'audio': 'long0001'}, 'learn': {'translations': {'transitive verb': [['aprender', 'memorize : aprender de memoria', 'discover : saber, enterarse de']]}, 'audio': 'learn001'}, 'set': {'translations': {'verb': [['place : poner, colocar', 'install : poner, colocar (ladrillos, etc.)', 'mount : engarzar, montar (un diamante, etc.)']], 'adjective': [['established, fixed : fijo, establecido', 'rigid : inflexible', 'ready : listo, preparado']], 'noun': [['collection : juego', 'decorado (en el teatro), plató (en el cine)', 'apparatus : aparato']], 'masculine noun': [['set (in tennis)']]}, 'audio': 'set00001'}, 'reach': {'translations': {'transitive verb': [['extend : extender, alargar', 'alcanzar', 'llegar a/hasta']], 'noun': [['alcance, extensión']]}, 'audio': 'reach001'}, 'space': {'translations': {'transitive verb': [['espaciar']], 'noun': [['period : espacio, lapso, período', 'room : espacio, sitio, lugar', 'espacio']]}, 'audio': 'space001'}, 'cover': {'translations': {'transitive verb': [['cubrir, tapar', 'tratar (un tema), cubrir (noticias)', 'insure : cubrir, asegurar']], 'noun': [['shelter : cubierta, abrigo, refugio', 'lid, top : cubierta, tapa', 'cubierta (de un libro), portada (de una revista)']]}, 'audio': 'cover001'}, 'race': {'translations': {'intransitive verb': [['correr, competir (en una carrera)', 'rush : ir a toda prisa, ir corriendo']], 'noun': [['current : corriente (de agua)', 'carrera', 'raza']]}, 'audio': 'race0001'}, 'hot': {'translations': {'adjective': [['caliente, cálido, caluroso', 'ardent, fiery : ardiente, acalorado', 'spicy : picante']]}, 'audio': ''}, 'determine': {'translations': {'transitive verb': [['establish : determinar, establecer', 'settle : decidir', 'find out : averiguar']]}, 'audio': 'determ10'}, 'travel': {'translations': {'intransitive verb': [['journey : viajar', 'go, move : desplazarse, moverse, ir']], 'noun': [['viajes']]}, 'audio': 'travel01'}, 'ice': {'translations': {'verb': [['freeze : congelar, helar', 'chill : enfriar', 'bañar un pastel']], 'noun': [['hielo', 'sherbet : sorbete; nieve']]}, 'audio': 'ice00001'}, 'planet': {'translations': {'noun': [['planeta']]}, 'audio': 'planet01'}, 'search': {'translations': {'transitive verb': [['registrar (un edificio, un área), cachear (a una persona), buscar en', 'buscar']], 'noun': [['búsqueda, registro (de un edificio, etc.), cacheo (de una persona)', 'en busca de']]}, 'audio': 'search01'}, 'strange': {'translations': {'adjective': [['queer, unusual : extraño, raro', 'unfamiliar : desconocido, nuevo']]}, 'audio': ''}, 'explore': {'translations': {'transitive verb': [['explorar, investigar, examinar']]}, 'audio': 'explor05'}, 'danger': {'translations': {'noun': [['peligro']]}, 'audio': ''}, 'secret': {'translations': {'adjective': [['secreto']], 'noun': [['secreto']]}, 'audio': 'secret01'}, 'careful': {'translations': {'adjective': [['cautious : cuidadoso, cauteloso', 'painstaking : cuidadoso, esmerado, meticuloso']]}, 'audio': 'carefu01'}, 'journey': {'translations': {'intransitive verb': [['viajar']], 'noun': [['viaje']]}, 'audio': 'journe01'}, 'creature': {'translations': {'noun': [['ser viviente, criatura, animal']]}, 'audio': 'creatu01'}, 'desert': {'translations': {'transitive verb': [['abandonar (una persona o un lugar), desertar de (una causa, etc.)', 'desertar']], 'adjective': [['desierto']], 'noun': [['desierto (en geografía)']]}, 'audio': 'desert01'}, 'adventure': {'translations': {'noun': [['aventura']]}, 'audio': ''}, 'encounter': {'translations': {'transitive verb': [['meet : encontrar, encontrarse con, toparse con, tropezar con', 'fight : combatir, luchar contra']], 'noun': [['encuentro']]}, 'audio': 'encoun01'}, 'galaxy': {'translations': {'noun': [['galaxia']]}, 'audio': 'galaxy01'}, 'mysterious': {'translations': {'adjective': [['misterioso']]}, 'audio': 'myster01'}}
 
     return JsonResponse(data)
+
+
+def analyze_textSyntax(request):
+#  response API for text = 'this is an example sentence designed to serve as test'
+    response =    {'sentences': [{'text': {'content': 'this is an example sentence designed to serve as test', 'beginOffset': 0}}], 'tokens': [{'text': {'content': 'this', 'beginOffset': 0}, 'partOfSpeech': {'tag': 5, 'number': 1, 'aspect': 0, 'case': 0, 'form': 0, 'gender': 0, 'mood': 0, 'person': 0, 'proper': 0, 'reciprocity': 0, 'tense': 0, 'voice': 0}, 'dependencyEdge': {'headTokenIndex': 1, 'label': 28}, 'lemma': 'this'}, {'text': {'content': 'is', 'beginOffset': 5}, 'partOfSpeech': {'tag': 11, 'mood': 3, 'number': 1, 'person': 3, 'tense': 4, 'aspect': 0, 'case': 0, 'form': 0, 'gender': 0, 'proper': 0, 'reciprocity': 0, 'voice': 0}, 'dependencyEdge': {'headTokenIndex': 1, 'label': 54}, 'lemma': 'be'}, {'text': {'content': 'an', 'beginOffset': 8}, 'partOfSpeech': {'tag': 5, 'aspect': 0, 'case': 0, 'form': 0, 'gender': 0, 'mood': 0, 'number': 0, 'person': 0, 'proper': 0, 'reciprocity': 0, 'tense': 0, 'voice': 0}, 'dependencyEdge': {'headTokenIndex': 4, 'label': 16}, 'lemma': 'an'}, {'text': {'content': 'example', 'beginOffset': 11}, 'partOfSpeech': {'tag': 6, 'number': 1, 'aspect': 0, 'case': 0, 'form': 0, 'gender': 0, 'mood': 0, 'person': 0, 'proper': 0, 'reciprocity': 0, 'tense': 0, 'voice': 0}, 'dependencyEdge': {'headTokenIndex': 4, 'label': 26}, 'lemma': 'example'}, {'text': {'content': 'sentence', 'beginOffset': 19}, 'partOfSpeech': {'tag': 6, 'number': 1, 'aspect': 0, 'case': 0, 'form': 0, 'gender': 0, 'mood': 0, 'person': 0, 'proper': 0, 'reciprocity': 0, 'tense': 0, 'voice': 0}, 'dependencyEdge': {
+        'headTokenIndex': 1, 'label': 7}, 'lemma': 'sentence'}, {'text': {'content': 'designed', 'beginOffset': 28}, 'partOfSpeech': {'tag': 11, 'tense': 3, 'aspect': 0, 'case': 0, 'form': 0, 'gender': 0, 'mood': 0, 'number': 0, 'person': 0, 'proper': 0, 'reciprocity': 0, 'voice': 0}, 'dependencyEdge': {'headTokenIndex': 4, 'label': 59}, 'lemma': 'design'}, {'text': {'content': 'to', 'beginOffset': 37}, 'partOfSpeech': {'tag': 9, 'aspect': 0, 'case': 0, 'form': 0, 'gender': 0, 'mood': 0, 'number': 0, 'person': 0, 'proper': 0, 'reciprocity': 0, 'tense': 0, 'voice': 0}, 'dependencyEdge': {'headTokenIndex': 7, 'label': 8}, 'lemma': 'to'}, {'text': {'content': 'serve', 'beginOffset': 40}, 'partOfSpeech': {'tag': 11, 'aspect': 0, 'case': 0, 'form': 0, 'gender': 0, 'mood': 0, 'number': 0, 'person': 0, 'proper': 0, 'reciprocity': 0, 'tense': 0, 'voice': 0}, 'dependencyEdge': {'headTokenIndex': 5, 'label': 61}, 'lemma': 'serve'}, {'text': {'content': 'as', 'beginOffset': 46}, 'partOfSpeech': {'tag': 2, 'aspect': 0, 'case': 0, 'form': 0, 'gender': 0, 'mood': 0, 'number': 0, 'person': 0, 'proper': 0, 'reciprocity': 0, 'tense': 0, 'voice': 0}, 'dependencyEdge': {'headTokenIndex': 7, 'label': 43}, 'lemma': 'as'}, {'text': {'content': 'test', 'beginOffset': 49}, 'partOfSpeech': {'tag': 6, 'number': 1, 'aspect': 0, 'case': 0, 'form': 0, 'gender': 0, 'mood': 0, 'person': 0, 'proper': 0, 'reciprocity': 0, 'tense': 0, 'voice': 0}, 'dependencyEdge': {'headTokenIndex': 8, 'label': 36}, 'lemma': 'test'}], 'language': 'en'}
+    title = {"title":"this is a title"}
+    response = {**response, **title}
+
+    return render(request, "desktop/analyze.html", {'response': response})
+    if request.method == 'POST':
+        data = request.POST
+        title = data['textTitle']
+        print(title)
+        text = data['inputText']
+
+        client = language_v1.LanguageServiceClient()
+        document = language_v1.Document(
+            content=text, type=language_v1.Document.Type.PLAIN_TEXT)
+        encoding_type = language_v1.EncodingType.UTF8
+        response = client.analyze_syntax(
+            request={"document": document,
+                     "encoding_type": encoding_type}
+        )
+
+        result_json = response.__class__.to_json(response)
+        response = json.loads(result_json)
+
+        return render(request, "desktop/analyze.html", {'response': response})
+
+    return render(request, "desktop/textFormat.html")
+

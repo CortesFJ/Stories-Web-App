@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import HiperWord from '../../components/hiperWord'
+import HiperWord from '../hiperWord'
 
 const HyperText = ({ paragraphs = [], lexicon = [], searchTerm = {}, handle_click = () => { } }) => {
 	const Sentences = ({ paragraph }) =>

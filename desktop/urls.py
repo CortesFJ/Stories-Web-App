@@ -4,6 +4,7 @@ from . import views, ApiViews
 
 urlpatterns = [
     path("apiView", ApiViews.apiView),
+    path("analyze", views.analyze_textSyntax),
     path("", views.Home, name="home"),
     path("stories/<str:pk>", views.BookView, name='stories'),
     path("desk/", views.Desk, name="desk"),

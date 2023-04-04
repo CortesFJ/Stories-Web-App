@@ -1,0 +1,7 @@
+{% extends 'main/main.html' %}
+{% load static %}
+{% block content %}
+{{response|json_script:'response'}}
+<div name="analyze" id="react-root" class="h-full"></div>
+{% csrf_token %}
+{% endblock %}
