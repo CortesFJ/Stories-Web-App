@@ -21,14 +21,14 @@
     <nav class="flex gap-6">
       <a href="{% url 'analyzeText' %}"
         class="hover:text-neutral-400
-        {% if request.path == '/analyze/' %} text-neutral-400 underline {% endif %} "
+      {% if request.path == '/' %} text-neutral-400 underline {% endif %} "
         >
         Your Text
       </a>
 
       <a href="{% url 'home' %}"
         class="hover:text-neutral-400
-        {% if request.path == '/' %} text-neutral-400 underline {% endif %} "
+        {% if request.path == 'h/' %} text-neutral-400 underline {% endif %} "
         >
         Stories
       </a>

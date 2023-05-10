@@ -5,7 +5,8 @@ from . import views, ApiViews
 urlpatterns = [
     path("apiView", ApiViews.apiView),
     path("analyze/", views.analyze_textSyntax, name='analyzeText'),
-    path("", views.Home, name="home"),
+    path("", views.analyze_textSyntax, name='analyzeText'),
+    path("h/", views.Home, name="home"),
     path("stories/<str:pk>", views.BookView, name='stories'),
     path("desk/", views.Desk, name="desk"),
     path("metadataUpdater/<str:id>/", views.MetadataUpdater),
