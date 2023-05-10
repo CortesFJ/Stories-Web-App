@@ -21,14 +21,12 @@
 </head>
 
 <body class="neucha-font text-neutral-700
-  {%if 'stories' in request.path or 'metadataUpdater' in request.path %} bg-amber-100
+  {%if 'stories' in request.path or 'metadataUpdater' in request.path or 'analyze' in request.path %} bg-amber-100
   {% elif request.path == '/desk/' %} bg-neutral-200
   {%endif%}">
   <div class=" {%if 'blog/' not in request.path %} h-[calc(100vh-2rem)] {%endif%} relative">
     {% include 'main/header/header.html' %}
-    <main class=" {%if request.path == '/' %} px-32 {%endif%}">
-      {% block content %}{% endblock %}
-    </main>
+    {% block content %}{% endblock %}
   </div>
 
   {% include 'main/footer.html' %}

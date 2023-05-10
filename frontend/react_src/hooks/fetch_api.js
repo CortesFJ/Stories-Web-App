@@ -1,9 +1,9 @@
-/** @format */
-
 const fetch_api = ({ data = {}, dir = '', method = 'POST' }) =>
 	fetch(dir, {
 		method: method,
-		headers: { 'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value },
+		headers: {
+			'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+		},
 		body: JSON.stringify(data),
 	})
 		.then(response =>

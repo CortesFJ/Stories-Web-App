@@ -2,53 +2,76 @@
 
 import React from 'react'
 
-import HiperWord from '../hiperWord'
+import HyperWord from '../hyperWord'
 
-const HyperText = ({ paragraphs = [], lexicon = [], searchTerm = {}, handle_click = () => { } }) => {
-	const Sentences = ({ paragraph }) =>
-		paragraph.para.map((sentence, sI) => {
-
-			const snt = sentence.reduce((acc, word, wI) => {
-
-				if (Array.isArray(word)) {
-
-					const lemmaId = word[1]
-					const phAid = lemmaId ? lexicon[lemmaId].phAid : null
-					acc.push(
-						<HiperWord
-							key={wI}
-							id={`${paragraph.pI}_${sI}_${wI}`}
-							word={word[0]}
-							lemmaId={lemmaId}
-							phAid={phAid}
-							searchTerm={searchTerm}
-							handle_click={handle_click}
-						/>
-					)
-				}
-				else {
-					acc.push(word)
-				}
-
+const HyperText = ({
+	tokens = [],
+	beginOfParagraphs = [],
+	// lexicon = [],
+	searchTerm = {},
+	clickedEl = '',
+	handle_click = () => {},
+}) => {
+	const reductions = [
+		"'s",
+		"n't",
+		"'re",
+		"'m",
+		"'ve",
+		"'d",
+		"'t",
+		"'ll",
+		"'clock",
+		'’s',
+		'n’t',
+		'’re',
+		'’m',
+		'’ve',
+		'’d',
+		'’t',
+		'’ll',
+		'’clock',
+	]
+	const Words = ({ tokens }) =>
+		tokens.reduce((acc, token, i) => {
+			if (token.partOfSpeech.tag == 10) {
+				acc.push(token.text.content)
 				return acc
-			}, [])
-			snt.push(' ')
-			return snt
-		})
+			}
+
+			if (
+				token.text.beginOffset &&
+				beginOfParagraphs.includes(token.text.beginOffset)
+			) {
+				acc.push(
+					<div key={'s' + i}>
+						<br />
+						{/* <sup className='m-1 font-semibold text-purple-900 '>{i}</sup> */}
+					</div>
+				)
+			}
+
+			!reductions.some(abbr => token.text.content === abbr) && acc.push(' ')
+
+			// const phAid = lemmaId ? lexicon[lemmaId].phAid : null
+			acc.push(
+				<HyperWord
+					key={'w' + i}
+					id={i}
+					token={token}
+					// phAid={phAid}
+					searchTerm={searchTerm}
+					clickedEl={clickedEl}
+					handle_click={handle_click}
+				/>
+			)
+
+			return acc
+		}, [])
 
 	return (
-		// pendiente ligar singos de puntuación a sus palabras correspondientes
-		<div className='hypertext'>
-			{paragraphs.map((para, pI) => (
-				<div
-					key={pI}
-					className='text-justify '>
-					<sup className='m-1 font-semibold text-purple-900 '>{pI + 1}</sup>
-					<Sentences paragraph={{ para, pI }} />
-					<br />
-					<br />
-				</div> 
-			))}
+		<div className='hypertext overflow-auto p-6 text-justify'>
+			<Words tokens={tokens} />
 		</div>
 	)
 }

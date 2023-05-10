@@ -1,45 +1,59 @@
-/** @format */
-
-import React, { useEffect, useState } from 'react'
+import React, { useState, createContext, useEffect } from 'react'
 
 import HyperText from './hypertext'
 import Thesaurus from './thesaurus'
 import { LeftArrow, RightArrow } from '../arrows'
 
-const Reader = ({ book = { chapters: [], info: {} } }) => {
+const Reader = ({ book = {} }) => {
 	const [chapter, setChapter] = useState(0)
-	const [dictData, setDictData] = useState({})
 	const [text, setText] = useState(book.chapters[0])
 	const [searchTerm, setSearchTerm] = useState()
-	const [searchMode, setSearchMode] = useState('notes')
+	const [searchMode, setSearchMode] = useState('analyze')
+	const [clickedEl, setClickedEl] = useState(null)
 
-	useEffect(() => {
-		if (text) {
-			const words = Object.keys(text.wordsMap).map(k => book.info.lexicon[k].lemma)
+	// useEffect(() => {
+	// 	handle_click(8, {
+	// 		sentenceIndex: 0,
+	// 		idx: 8,
+	// 		text: {
+	// 			content: 'village',
+	// 			beginOffset: 29,
+	// 		},
+	// 		partOfSpeech: {
+	// 			tag: 6,
+	// 			number: 1,
+	// 			aspect: 0,
+	// 			case: 0,
+	// 			form: 0,
+	// 			gender: 0,
+	// 			mood: 0,
+	// 			person: 0,
+	// 			proper: 0,
+	// 			reciprocity: 0,
+	// 			tense: 0,
+	// 			voice: 0,
+	// 		},
+	// 		dependencyEdge: {
+	// 			headTokenIndex: 5,
+	// 			label: 36,
+	// 		},
+	// 		lemma: 'village',
+	// 	})
+	// }, [])
 
-			const queryString = words.map(word => `words[]=${word}`).join('&')
-
-			fetch(`dictData/?${queryString}`)
-				.then(response =>
-					response.status == 200
-						? response.json()
-						: { message: 'hubó un problema para procesar la solicitud' }
-				)
-				.then(r => setDictData(r))
+	const handle_click = (indexOfToken, token) => {
+		const wordData = {
+			lemma: token.lemma,
+			PoS: token.partOfSpeech.tag,
+			sentenceIndex: token.sentenceIndex,
+			token,
+			indexOfToken,
 		}
-	}, [text])
-
-	const handle_click = (clickedEl, wordId) => {
-		if (wordId === null) {
-			setSearchMode('notes')
+		if (searchTerm?.indexOfToken === wordData.indexOfToken) {
 			return
 		}
-
-		if (searchTerm?.wordId === wordId) {
-			return
-		}
-		const lemma = book.info.lexicon[wordId].lemma
-		setSearchTerm({ lemma, wordId, clickedEl })
+		setClickedEl(indexOfToken)
+		setSearchTerm(wordData)
 		setSearchMode('concordance')
 	}
 
@@ -54,67 +68,69 @@ const Reader = ({ book = { chapters: [], info: {} } }) => {
 			return
 		}
 
-		setSearchMode('notes')
-		setSearchTerm({ lemma: 'stories', wordId: null, clickedEl: null })
+		// setSearchTerm({ lemma: null, clickedEl: null })
 		setText(book.chapters[newChapter])
 		setChapter(newChapter)
 	}
 
-	const ChaptersNavbar = () => (
-		<nav className=' flex w-full items-center justify-between bg-amber-100 pr-8'>
-			<select
-				className='translate-y-0.5 bg-transparent pr-2 text-2xl font-bold uppercase text-neutral-600 hover:text-neutral-700'
-				value={chapter}
-				onChange={e => change_chapter('_', e.target.value)}
-			>
-				{book?.chapters.map((text, i) => (
-					<option
-						key={i}
-						value={i}
+	const ChaptersNavbar = ({ chapters = [], change_chapter = () => {} }) => (
+		<nav className='flex h-16 w-full items-center justify-between border-b border-teal-800 p-8'>
+			{chapters.length > 1 ? (
+				<>
+					<select
+						className='translate-y-0.5 bg-transparent pr-2 text-2xl font-bold uppercase text-neutral-600 hover:text-neutral-700'
+						// defaultValue={chapter.title}
+						onChange={e => change_chapter('_', e.target.value)}
 					>
-						{text.title}
-					</option>
-				))}
-			</select>
-			<span className='flex items-center gap-2'>
-				<LeftArrow
-					onClick={() => change_chapter(-1)}
-					style='w-7 h-7 text-neutral-600 hover:text-neutral-800 active:text-green-900'
-				/>
-				<RightArrow
-					onClick={() => change_chapter(1)}
-					style='w-7 h-7 text-neutral-600 hover:text-neutral-800 active:text-green-900'
-				/>
-			</span>
+						{chapters.map((chapter, i) => (
+							<option
+								key={i}
+								value={i}
+							>
+								{chapter.title}
+							</option>
+						))}
+					</select>
+					<span className='flex items-center gap-2'>
+						<LeftArrow
+							onClick={() => change_chapter(-1)}
+							style='w-7 h-7 text-neutral-600 hover:text-neutral-800 active:text-green-900'
+						/>
+						<RightArrow
+							onClick={() => change_chapter(1)}
+							style='w-7 h-7 text-neutral-600 hover:text-neutral-800 active:text-green-900'
+						/>
+					</span>
+				</>
+			) : (
+				<div className='translate-y-0.5 bg-transparent pr-2 text-2xl font-bold uppercase text-neutral-600 hover:text-neutral-700'>
+					{chapters[0].title}
+				</div>
+			)}
 		</nav>
 	)
 
 	return (
-		<div className='grid grid-cols-7 gap-7 px-24'>
+		<div className='grid grid-cols-7 gap-7 px-24 text-lg'>
 			<div className='col-span-4'>
-				<header className='flex h-16 items-center justify-between border-b border-teal-800'>
-					{book?.chapters.length > 0 ? (
-						<ChaptersNavbar />
-					) : (
-						<div className='translate-y-0.5 bg-transparent pr-2 text-2xl font-bold uppercase text-neutral-600 hover:text-neutral-700'>
-							{text?.title}
-						</div>
-					)}
-				</header>
+				<ChaptersNavbar
+					chapters={book.chapters}
+					change_chapter={change_chapter}
+				/>
 				<HyperText
-					paragraphs={text?.nestedText}
-					lexicon={book?.info.lexicon}
+					tokens={text.textData.tokens}
+					beginOfParagraphs={text.textData.beginOfParagraphs}
 					handle_click={handle_click}
 					searchTerm={searchTerm}
+					clickedEl={clickedEl}
 				/>
 			</div>
 			<Thesaurus
-				searchTerm={searchTerm}
+				searchTerm={searchTerm?.token}
 				mode={searchMode}
 				setMode={setSearchMode}
-				chapters={book?.chapters}
-				translations={book?.info.untrackedWords}
-				dictData={dictData}
+				textData={text.textData}
+				book={book && book}
 			/>
 		</div>
 	)

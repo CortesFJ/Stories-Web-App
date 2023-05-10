@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 
-import HiperWord from "../../components/hiperWord"
+import HyperWord from "../../components/hyperWord"
 
 const Editor = ({ word, aid, aidsDict, setAidsDict }) => {
     const [cAid, setCaid] = useState(word in aidsDict ? aidsDict[word] : [...aid])
@@ -33,7 +33,7 @@ const Editor = ({ word, aid, aidsDict, setAidsDict }) => {
     return (
         <div className='flex gap-8'>
             <div>
-                <HiperWord
+                <HyperWord
                     word={word}
                     phAid={cAid}
                 />

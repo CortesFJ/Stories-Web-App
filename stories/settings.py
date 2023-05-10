@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2bij%!@wjcdifjoxjnf=j%642x26h-%%@a26r2nzoc7hbjnk+='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8080',
@@ -112,10 +112,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': 'n2H4N3nfXBLg44GAQnv3',
-        
-        'HOST': 'containers-us-west-197.railway.app',
-        'PORT': '6092',
+        'PASSWORD': 'p08LJ7pMJakmiVJS7esD',
+        'HOST': 'containers-us-west-10.railway.app',
+        'PORT': '6785',
     }
 }
 
@@ -154,12 +153,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-# STATIC_URL = 'assets/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
     BASE_DIR / 'FrontEnd/dist/assets'
 ]
+
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
@@ -172,3 +172,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login'
 AUTH_USER_MODEL = 'accounts.User'
+

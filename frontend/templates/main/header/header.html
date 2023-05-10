@@ -1,6 +1,6 @@
 <!-- prettier-ignore-->
 {% load custom_template_tag %} 
-	{% if request.path == '/' %} 
+	{% if request.path == '/' or 'analyze' in request.path %} 
 		{% set_var ' h-32 sm:h-44 pl-10 sm:pl-32 sm:pr-52 ' as headerStyle %}
 	{% elif 'blog/' in request.path %}
 		{% set_var 'h-28 px-12' as headerStyle %}
@@ -39,7 +39,7 @@
 				customPaddin = !customPaddin
 			}}
 			"
-		class="absolute right-16 h-8 w-8 text-inherit transition duration-700 hover:opacity-70"
+		class="absolute right-16 h-8 w-8 text-inherit opacity-50 transition duration-700 hover:opacity-90"
 		:class="visible ? 'bottom-6' : 'bottom-2 rotate-180 opacity-40'"
 	>
 		<path

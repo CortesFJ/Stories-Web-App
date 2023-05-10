@@ -1,33 +1,31 @@
 {% extends 'main/main.html' %} {% load static %} {% block content %}
 {{response|json_script:'response'}}
-<div class="flex justify-center gap-8 pr-44">
-	<div class="w-44">
-		Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem, tempora. Ipsum
-		expedita fugit doloremque sapiente quo explicabo deserunt laudantium numquam at
-		mollitia eligendi, dolore optio ipsam, aperiam itaque cupiditate! Qui!
-	</div>
+<div class="grid place-items-center">
 	<form
 		action=""
 		method="post"
+		class="hypertext flex w-3/5 flex-col gap-4 border border-neutral-400 p-10 text-center shadow-lg"
 	>
 		{% csrf_token %}
 		<input
 			id="textTitle"
-			class="w-full rounded border bg-neutral-100 py-1.5 pl-2 capitalize shadow-inner outline-none"
+			class="w-full border border-neutral-300 py-2 text-center uppercase outline-none focus:border-neutral-500"
 			type="text"
 			name="textTitle"
 			placeholder="TITLE"
+			required
 		/>
 		<textarea
 			id="inputText"
-			class="textarea w-full resize-none rounded-b-lg bg-neutral-300 outline-none"
+			placeholder="paste here the text you want to study"
+			class="textarea h-full resize-none border bg-neutral-300 outline-none focus:border-neutral-500"
 			name="inputText"
-		>
-		</textarea>
+			required
+		></textarea>
 		<input
-			class="rounded bg-neutral-400 px-6 py-1 hover:bg-neutral-500 active:text-white"
+			class="w-fit self-end rounded border border-neutral-500 bg-neutral-400 px-6 py-1 hover:bg-neutral-500 active:text-white"
 			type="submit"
-			value="Send"
+			value="Enviar"
 		/>
 	</form>
 </div>
