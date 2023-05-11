@@ -18,12 +18,8 @@ class BookSerializer(ModelSerializer):
 class TextSerializer(ModelSerializer):
     class Meta:
         model = Text
-        fields = ["title", "chapter", "wordsMap", "nestedText"]
+        fields = ["title", "chapter", "textData"]
 
-class TextMetadataSerializer(ModelSerializer):
-    class Meta:
-        model = Text
-        fields = ["id", "title", "homonyms", "unknownWords", "nestedText"]
 
 # class DynamicFieldsModelSerializer(serializers.ModelSerializer):
 #     """

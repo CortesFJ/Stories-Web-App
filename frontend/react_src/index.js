@@ -12,9 +12,6 @@ if (root_elm) {
     case /desk/.test(componentName):
       Page = lazy(() => import("./desktop/pages/desk/desk"));
       break;
-    case /metadataUpdater/.test(componentName):
-      Page = lazy(() => import("./desktop/pages/metadataUpdater/metadataUpdater"));
-      break;
     case /phEditor/.test(componentName):
       Page = lazy(() => import("./desktop/pages/phEditor/phEditor"));
       break;
