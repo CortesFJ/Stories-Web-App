@@ -29,11 +29,15 @@ def BookView(request, pk):
     bookInfo = BookSerializer(Book.objects.get(id=pk), many=False)
     chapters = Text.objects.filter(book=pk).order_by("chapter")
     chapters = TextSerializer(chapters, many=True)
-    context = {"bookInfo": bookInfo.data, "chapters": chapters.data}
 
-    with open('desktop/static/fakeBookView.json', 'w') as f:
-        json.dump(context, f, indent=4)
-    pp(context)
+
+    lexicon = bookInfo.data['lexicon']
+    phonetics  = get_phonetics(lexicon)
+
+    context = {"bookInfo": bookInfo.data, "chapters": chapters.data, 'phonetics':phonetics}
+
+    # with open('desktop/static/fakeBookView.json', 'w') as f:
+    #     json.dump(context, f, indent=4)
 
     # with open('desktop/static/fakeBookView.json', 'r') as outfile:
     #     context = json.load(outfile)
@@ -42,9 +46,6 @@ def BookView(request, pk):
 
 
 def create_text(data):
-    [book, _] = Book.objects.get_or_create(
-        title=data["book"], level=data["bookLevel"]
-    )
 
     textData = {
         'title': data['title'],
@@ -52,12 +53,18 @@ def create_text(data):
     }
     textData = fetch_googleNPL(textData)
 
+    [book, _] = Book.objects.get_or_create(
+        title=data["book"], level=data["bookLevel"]
+    )
+
+    book.update(lexicon=[word for word in textData['phonetics']])
+
     text = Text.objects.create(
         book=book,
         chapter=int(data["chapter"]),
         title=data["title"],
         text=data["text"],
-        textData=textData)
+        textData=textData['response'])
 
     return HttpResponse(json.dumps(text.id))
 

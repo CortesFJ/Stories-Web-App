@@ -73,49 +73,55 @@ const Reader = ({ book = {} }) => {
 		setChapter(newChapter)
 	}
 
-	const ChaptersNavbar = ({ chapters = [], change_chapter = () => {} }) => (
-		<nav className='flex h-16 w-full items-center justify-between border-b border-teal-800 p-8'>
-			{chapters.length > 1 ? (
-				<>
-					<select
-						className='translate-y-0.5 bg-transparent pr-2 text-2xl font-bold uppercase text-neutral-600 hover:text-neutral-700'
-						// defaultValue={chapter.title}
-						onChange={e => change_chapter('_', e.target.value)}
-					>
-						{chapters.map((chapter, i) => (
-							<option
-								key={i}
-								value={i}
-							>
-								{chapter.title}
-							</option>
-						))}
-					</select>
-					<span className='flex items-center gap-2'>
-						<LeftArrow
-							onClick={() => change_chapter(-1)}
-							style='w-7 h-7 text-neutral-600 hover:text-neutral-800 active:text-green-900'
-						/>
-						<RightArrow
-							onClick={() => change_chapter(1)}
-							style='w-7 h-7 text-neutral-600 hover:text-neutral-800 active:text-green-900'
-						/>
-					</span>
-				</>
-			) : (
-				<div className='translate-y-0.5 bg-transparent pr-2 text-2xl font-bold uppercase text-neutral-600 hover:text-neutral-700'>
-					{chapters[0].title}
-				</div>
-			)}
-		</nav>
-	)
+	const ChaptersNavbar = ({ chapters = [], currentChapter = '', change_chapter = () => {} }) => {
+
+		return (
+			<nav className='flex h-16 w-full items-center justify-between border-b border-teal-800 p-8'>
+				{chapters.length > 1 ? (
+					<>
+						<select
+							className='max-w-lg translate-y-0.5 text-ellipsis bg-transparent pr-2 text-2xl font-bold uppercase text-neutral-600 hover:text-neutral-700'
+							value={currentChapter}
+							onChange={e => {
+								change_chapter('_', e.target.value)
+							}}
+						>
+							{chapters.map((title, i) => (
+								<option
+									key={i}
+									value={i}
+								>
+									{title}
+								</option>
+							))}
+						</select>
+						<span className='flex items-center gap-2'>
+							<LeftArrow
+								onClick={() => change_chapter(-1)}
+								style='w-7 h-7 text-neutral-600 hover:text-neutral-800 active:text-green-900'
+							/>
+							<RightArrow
+								onClick={() => change_chapter(1)}
+								style='w-7 h-7 text-neutral-600 hover:text-neutral-800 active:text-green-900'
+							/>
+						</span>
+					</>
+				) : (
+					<div className='translate-y-0.5 bg-transparent pr-2 text-2xl font-bold uppercase text-neutral-600 hover:text-neutral-700'>
+						{chapters[0]}
+					</div>
+				)}
+			</nav>
+		)
+	}
 
 	return (
 		<div className='grid grid-cols-7 gap-7 px-24 text-lg'>
 			<div className='col-span-4'>
 				<ChaptersNavbar
-					chapters={book.chapters}
+					chapters={book.chapters.map(c => c.title)}
 					change_chapter={change_chapter}
+					currentChapter={chapter}
 				/>
 				<HyperText
 					tokens={text.textData.tokens}

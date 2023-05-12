@@ -1,20 +1,34 @@
 import React, { useEffect } from 'react'
-import use_page_context from '../../../hooks/use_page_context'
 
+import use_page_context from '../../../hooks/use_page_context'
+import add_paragraphs_and_sentence_index from '../analyze/add_paragraph_and_sentence_index'
 import Reader from '../../components/reader/reader'
 
 const StoriesPage = () => {
-	// useEffect(() => {
-	const book = {
-		info: use_page_context('bookInfo'),
-		chapters: use_page_context('chapters'),
-	}
-	// setBook(cur_book)
-	// setText(cur_book.chapters[0])
-	// }, [])
-	console.log(book);
+	const info = use_page_context('bookInfo')
+	const phonetics = use_page_context('phonetics')
 
-	return <Reader book={book} />
+	const chapters = use_page_context('chapters').map(chapter => {
+		const textData = add_paragraphs_and_sentence_index(chapter.textData)
+		return {
+			chapter: chapter.chapter,
+			title: textData.title,
+			textData,
+		}
+	})
+
+	const book = {
+		chapters,
+		info: {
+			id: info.id,
+			level: info.level,
+			phonetics: phonetics,
+			notes: Object.keys(info.notes).length ? info.note : null,
+		},
+		title: info.title,
+	}
+
+	return <Reader book={book && book} />
 }
 
 export default StoriesPage

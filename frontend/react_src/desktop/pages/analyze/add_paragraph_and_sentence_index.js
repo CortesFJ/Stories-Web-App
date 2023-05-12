@@ -24,13 +24,14 @@ const add_paragraphs_and_sentence_index = APIresponse => {
 		})
 	})
 
-	APIresponse.tokens.forEach((token) => {
+	APIresponse.tokens.forEach((token, idx) => {
 		beginOfSentences.forEach((sentenceStart, i) => {
             const sentenceEnd = beginOfSentences[i+1] || Infinity
             const tokenBegin = token.text.beginOffset
 
 			if (tokenBegin >= sentenceStart && tokenBegin < sentenceEnd) {
 				token.sentenceIndex = i
+				token.idx = idx
 			}
         })
 	})

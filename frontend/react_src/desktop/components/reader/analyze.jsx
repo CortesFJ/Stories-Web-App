@@ -32,8 +32,9 @@ const Analyze = ({ textData = {}, searchTerm = {} }) => {
 		return acc
 	}
 
+
 	const dependedTokens = textData.tokens.filter(
-		t => t.idx != searchTerm.idx && t.dependencyEdge.headTokenIndex === searchTerm.idx
+		(t, idx) => idx != searchTerm.idx && t.dependencyEdge.headTokenIndex === searchTerm.idx
 	)
 
 	const dependedPhrases = dependedTokens.map(token => {
@@ -167,6 +168,7 @@ ${'Sentence: ' + sentence}${
 	const strPhrase = allTokensOfPhraseIds
 		.reduce(
 			(acc, tId) => {
+
 				const tContent = tokenToString(textData.tokens[tId])
 				if (acc.prevId === null || acc.prevId === tId - 1) {
 					acc.phrase += tContent

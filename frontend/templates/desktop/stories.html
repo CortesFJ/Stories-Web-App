@@ -2,5 +2,6 @@
 {% block content %}
 {{ bookInfo|json_script:'bookInfo' }}
 {{ chapters|json_script:'chapters' }}
+{{ phonetics|json_script:'phonetics' }}
 <div name='stories' id="react-root" class="contents"></div>
 {% endblock %}
