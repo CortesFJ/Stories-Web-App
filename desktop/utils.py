@@ -1,9 +1,12 @@
+from pprint import pp
+from pyexpat.errors import messages
 import aiohttp
 import asyncio
 # import pandas as pd
 # import re
 
 import openai
+
 
 async def fetch_dictData(word):
 
@@ -29,11 +32,11 @@ async def fetch_all_dictData(words):
 
 
 def filter_dictData(word, wordData):
-    data = {'translations':{}, 'audio':''}
+    data = {'translations': {}, 'audio': ''}
 
     for meaning in wordData:
 
-        if not isinstance(meaning , dict):
+        if not isinstance(meaning, dict):
             break
 
         if meaning['hwi']['hw'] != word:
@@ -46,7 +49,7 @@ def filter_dictData(word, wordData):
                 data['audio'] = meaning['hwi']['prs'][0]['sound']['audio']
             except:
                 None
-        
+
         PoS = meaning['fl']
         if PoS not in data["translations"]:
             data['translations'][PoS] = []
@@ -62,8 +65,9 @@ def get_dictData(words):
 
     return data
 
+
 with open('desktop/static/openIA_API_KEY', 'r') as f:
-    openai.api_key = f.read() 
+    openai.api_key = f.read()
 
 role = "Present the given information in a useful manner for a foreign English student. If any challenging linguistic structure in the sentence, address it in your explanation. Be brief, a little friendly, add examples. Your response should be in Spanish."
 userEg = """Word: kitten (Singular)
@@ -85,6 +89,7 @@ Oraciones similares:
 	I think I saw a cute kitten in the living room.
 	(Me parece que vi un lindo gatito en la sala de estar)"""
 
+
 def fetch_chatGPT(request):
 
     response = openai.ChatCompletion.create(
@@ -93,10 +98,11 @@ def fetch_chatGPT(request):
             {"role": "system", "content": role},
             {"role": "user", "content": userEg},
             {"role": "assistant",
-                "content": assintantEg},
+             "content": assintantEg},
             {"role": "user", "content": request}
         ]
     )
+    # pp(messages)
     message = response['choices'][0]['message']['content']
     return message
 
@@ -281,4 +287,3 @@ def fetch_chatGPT(request):
 #     sentences = sentences[:-1]
 #     sentences = [s.strip() for s in sentences]
 #     return sentences
-

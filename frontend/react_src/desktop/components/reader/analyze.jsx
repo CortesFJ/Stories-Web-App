@@ -32,9 +32,9 @@ const Analyze = ({ textData = {}, searchTerm = {} }) => {
 		return acc
 	}
 
-
 	const dependedTokens = textData.tokens.filter(
-		(t, idx) => idx != searchTerm.idx && t.dependencyEdge.headTokenIndex === searchTerm.idx
+		(t, idx) =>
+			idx != searchTerm.idx && t.dependencyEdge.headTokenIndex === searchTerm.idx
 	)
 
 	const dependedPhrases = dependedTokens.map(token => {
@@ -120,10 +120,13 @@ ${'Sentence: ' + sentence}${
 		useEffect(() => {
 			if (sectionRef.current) {
 				const parent = sectionRef.current.parentNode
-				parent.scrollTo({
-					behavior: 'smooth',
-					top: parent.scrollHeight - sectionRef.current.scrollHeight,
-				})
+
+				setTimeout(() => {
+					parent.scrollTo({
+						behavior: 'smooth',
+						top: parent.scrollHeight - sectionRef.current.scrollHeight,
+					})
+				}, 1000) // change delay time as needed
 			}
 		}, [])
 
@@ -168,7 +171,6 @@ ${'Sentence: ' + sentence}${
 	const strPhrase = allTokensOfPhraseIds
 		.reduce(
 			(acc, tId) => {
-
 				const tContent = tokenToString(textData.tokens[tId])
 				if (acc.prevId === null || acc.prevId === tId - 1) {
 					acc.phrase += tContent
@@ -183,50 +185,102 @@ ${'Sentence: ' + sentence}${
 		.phrase.trim()
 
 	const searchTermIsRoot = grammarFunctionStr === 'Root'
-	const Sentence = () => (
-		<p>
-			{sentenceTokens.map((t, i) => {
-				if (t.partOfSpeech.tag == 10) {
-					return <span key={i}>{t.text.content}</span>
-				}
-				const style =
-					t.idx === searchTerm.idx
-						? 'text-black text-xl'
-						: allDependedTokens.includes(t.idx)
-						? !searchTermIsRoot
-							? 'underline'
-							: ''
-						: ' opacity-80'
-				return (
-					<span
-						key={i}
-						className={style}
-					>
-						{' '}
-						{t.text.content}
-					</span>
-				)
-			})}
-		</p>
-	)
+	const Sentence = () => {
+		const [opacity, setOpacity] = useState(0)
 
-	return (
-		<>
-			<h5>Oración</h5>
-			<br />
-			<Sentence />
-			<br />
-			{complements.length > 0 && (
-				<div className='flex'>
-					<strong className='grid items-center capitalize'>{word}</strong>
-					<div className='ml-4 mr-2 grid items-center'>
+		useEffect(() => {
+			let currentOpacity = 0
+
+			const intervalId = setInterval(() => {
+				currentOpacity += 0.1
+
+				if (currentOpacity >= 1) {
+					clearInterval(intervalId)
+				}
+
+				setOpacity(currentOpacity)
+			}, 150) // change interval time as needed
+
+			return () => {
+				clearInterval(intervalId)
+			}
+		}, [])
+		return (
+			<>
+				<p>
+					{sentenceTokens.map((t, i) => {
+						if (t.partOfSpeech.tag == 10) {
+							return <span key={i}>{t.text.content}</span>
+						}
+						const style =
+							t.idx === searchTerm.idx
+								? 'text-black text-xl'
+								: allDependedTokens.includes(t.idx)
+								? !searchTermIsRoot
+									? 'underline'
+									: ''
+								: 'opacity-80'
+						return (
+							<span
+								key={i}
+								className={style}
+								style={style === 'opacity-80' ? {} : { opacity }}
+							>
+								{' '}
+								{t.text.content}
+							</span>
+						)
+					})}
+				</p>
+				<br />
+				{complements.length > 0 && (
+					<div
+						style={{ opacity }}
+						className=' flex'
+					>
+						<strong className='grid items-center capitalize'>{word}</strong>
+						<div className='ml-4 mr-2 grid items-center'>
+							<svg
+								xmlns='http://www.w3.org/2000/svg'
+								fill='none'
+								viewBox='0 0 24 24'
+								strokeWidth={2}
+								stroke='currentColor'
+								className='h-6 w-6'
+							>
+								<path
+									strokeLinecap='round'
+									strokeLinejoin='round'
+									d='M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75'
+								/>
+							</svg>
+						</div>
+						<ul className='grid items-center'>
+							{complements.map((text, i) => (
+								<li
+									key={i}
+									className=' list-inside list-disc'
+								>
+									{text}
+								</li>
+							))}
+						</ul>
+					</div>
+				)}
+				<br />
+				{!searchTermIsRoot && (
+					<p
+						className='flex items-center'
+						style={{ opacity }}
+					>
+						<strong className='capitalize'>{headToken?.text.content}</strong>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
 							fill='none'
 							viewBox='0 0 24 24'
 							strokeWidth={2}
 							stroke='currentColor'
-							className='h-6 w-6'
+							className='ml-4 mr-2 h-6 w-6'
 						>
 							<path
 								strokeLinecap='round'
@@ -234,49 +288,65 @@ ${'Sentence: ' + sentence}${
 								d='M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75'
 							/>
 						</svg>
-					</div>
-					<ul className='grid items-center'>
-						{complements.map((text, i) => (
-							<li
-								key={i}
-								className=' list-inside list-disc'
-							>
-								{text}
-							</li>
-						))}
-					</ul>
-				</div>
-			)}
-			<br />
-			{!searchTermIsRoot && (
-				<p className='flex items-center'>
-					<strong className='capitalize'>{headToken?.text.content}</strong>
-					<svg
-						xmlns='http://www.w3.org/2000/svg'
-						fill='none'
-						viewBox='0 0 24 24'
-						strokeWidth={2}
-						stroke='currentColor'
-						className='ml-4 mr-2 h-6 w-6'
-					>
-						<path
-							strokeLinecap='round'
-							strokeLinejoin='round'
-							d='M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75'
-						/>
-					</svg>
-					( {strPhrase} )
-				</p>
+						( {strPhrase} )
+					</p>
+				)}
+			</>
+		)
+	}
+
+	const [animation, setAnimation] = useState(true)
+	const Typewriter = ({ text, speed, onFinish }) => {
+		const [typedText, setTypedText] = useState('')
+		const [currentIndex, setCurrentIndex] = useState(0)
+
+		useEffect(() => {
+			if (currentIndex < text.length) {
+				const timeoutId = setTimeout(() => {
+					setTypedText(prev => prev + text.charAt(currentIndex))
+					setCurrentIndex(prev => prev + 1)
+				}, speed)
+
+				return () => {
+					clearTimeout(timeoutId)
+				}
+			} else {
+				onFinish()
+			}
+		}, [currentIndex, speed, text])
+
+		return <p id='demo'>{typedText}</p>
+	}
+
+	const handleTypewriterFinish = () => {
+		setAnimation(false)
+	}
+
+	useEffect(() => {
+		fetch_IAtool(prompt)
+	}, [])
+
+	return (
+		<>
+			{animation ? (
+				<Typewriter
+					text={sentenceTokens.map(t => t.text.content).join(' ')}
+					speed={35}
+					onFinish={handleTypewriterFinish}
+				/>
+			) : (
+				<Sentence />
 			)}
 			<br />
 			{!IAresponse ? (
-				<button
-					className='mb-10 rounded border border-neutral-800 py-1 px-4 shadow hover:bg-neutral-800  hover:text-white active:bg-green-900'
-					onClick={() => fetch_IAtool(prompt)}
-				>
-					Explicame
-				</button>
-			) : IAresponse === 'asking' ? (
+				''
+			) : // <button
+			// 	className='mb-10 rounded border border-neutral-800 py-1 px-4 shadow hover:bg-neutral-800  hover:text-white active:bg-green-900'
+			// 	onClick={() => fetch_IAtool(prompt)}
+			// >
+			// 	Explicame
+			// </button>
+			IAresponse === 'asking' ? (
 				<h5>Analizando texto ... (tardará unos segundos)</h5>
 			) : (
 				<IAanalyzer IAresponse={IAresponse} />
